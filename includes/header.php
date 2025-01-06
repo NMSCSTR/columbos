@@ -1,3 +1,5 @@
+<?php define('BASE_URL', 'http://localhost/columbos/'); ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -6,8 +8,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
 
     <!-- Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -29,6 +35,7 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js">
     </script>
 
+
     <!-- Custom CSS -->
     <style>
     * {
@@ -40,6 +47,7 @@
 </head>
 
 <body>
+
 <header class="bg-white border-bottom shadow-sm fixed-top">
     <nav class="navbar navbar-expand-lg navbar-light bg-white container">
         <a class="navbar-brand d-flex align-items-center" href="#">

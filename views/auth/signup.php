@@ -1,6 +1,5 @@
 <?php
 include '../../includes/header.php';
-include '../../config.php';
 ?>
 
 <!-- Register -->
@@ -16,7 +15,7 @@ include '../../config.php';
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control shadow"  name="firstname" id="firstname"
+                        <input type="text" class="form-control shadow" name="firstname" id="firstname"
                             placeholder="First Name" value="">
                         <label for="firstname">First Name</label>
                     </div>
@@ -77,6 +76,8 @@ include '../../config.php';
 </main>
 
 <script>
+    const BASE_URL = "<?php echo BASE_URL; ?>"; 
+
     function registerUser() {
         const firstname = document.getElementById('firstname').value;
         const lastname = document.getElementById('lastname').value;
@@ -98,21 +99,21 @@ include '../../config.php';
             password_confirmation: password_confirmation
         };
 
-        axios.post('${BASE_URL}/api/authApiController.php?action=register', data)
-            .then(response => {
-                if (response.data.success) {
-                    console.log(response.data);
-                    Swal.fire('Success', response.data.message, 'success');
-                    window.location.href = 'signin.php'; 
-                }else {
-                    Swal.fire('Error', response.data.message, 'error');
-                }
-
-            })
-            .catch(error => {
-                console.error(error);
-                Swal.fire('An error occurred! Please try again.');
-            });
+        axios.post(`${BASE_URL}/api/authApiController.php?action=register`, data)
+        .then(response => {
+            if (response.data.success) {
+                console.log(response.data);
+                Swal.fire('Success', response.data.message, 'success');
+                window.location.href = `${BASE_URL}/views/auth/signin.php`; 
+            } else {
+                Swal.fire('Error', response.data.message, 'error');
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            const errorMessage = error.response ? error.response.data.message : 'An unexpected error occurred!';
+            Swal.fire('Error', errorMessage, 'error');
+        });
     }
 </script>
 

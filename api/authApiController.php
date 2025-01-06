@@ -1,11 +1,11 @@
-<?php;
-header("Content-Type: application/json");
+<?php
 include '../connection/db.php';
+header("Content-Type: application/json");
 
 
 $response = ['success' => false, 'message' => 'Invalid Request'];
 
-if ($_SERVER['REQUEST_METHOD' === 'POST']) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $action = isset($_GET['action']) ? $_GET['action'] : '';
     $data = json_decode(file_get_contents("php://input"), true);
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD' === 'POST']) {
         } else {
             $hash_password = password_hash($password, PASSWORD_DEFAULT);
             $sql = "INSERT INTO users (firstname, lastname, kcfapicode, email, phone_number, role, password)
-                        VALUES('$firstname','$lastname','$kcfapicode','$email','$phone_number','$role','$password)";
+                        VALUES('$firstname','$lastname','$kcfapicode','$email','$phone_number','$role','$hash_password')";
 
             if (mysqli_query($conn, $sql)) {
                 $response['success'] = true;
@@ -41,5 +41,7 @@ if ($_SERVER['REQUEST_METHOD' === 'POST']) {
 
     }
 
-    
+
+    // Return the response as JSON
+    echo json_encode($response);
 }
