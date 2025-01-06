@@ -103,8 +103,12 @@ include '../../includes/header.php';
         .then(response => {
             if (response.data.success) {
                 console.log(response.data);
-                Swal.fire('Success', response.data.message, 'success');
-                window.location.href = `${BASE_URL}/views/auth/signin.php`; 
+                Swal.fire('Success', response.data.message, 'success')
+                .then(() => {
+                    setTimeout(() => {
+                        window.location.href = `${BASE_URL}/views/auth/signin.php`; 
+                    }, 2000);
+                });
             } else {
                 Swal.fire('Error', response.data.message, 'error');
             }
