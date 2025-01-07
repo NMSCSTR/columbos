@@ -77,7 +77,6 @@ include '../../includes/header.php';
 
 <script>
     const BASE_URL = "<?php echo BASE_URL; ?>"; 
-
     function registerUser() {
         const data = {
             firstname: document.getElementById('firstname').value,
@@ -110,7 +109,6 @@ include '../../includes/header.php';
             Swal.fire('Error', errorMessage, 'error');
         });
     }
-
     
 </script>
 

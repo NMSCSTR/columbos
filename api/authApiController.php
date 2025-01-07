@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $lastname = $data['lastname'] ?? '';
         $kcfapicode = $data['kcfapicode'] ?? '';
         $email = $data['email'] ?? '';
-        $phone_number = $data['phone_number'] ?? '';
+        $phone_number = $data['phone_number'] ?? '';    
         $role = $data['role'] ?? '';
         $password = $data['password'] ?? '';
         $password_confirmation = $data['password_confirmation'] ?? '';
@@ -68,8 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-    }
-
-    
+    } 
     echo json_encode($response);
 }
