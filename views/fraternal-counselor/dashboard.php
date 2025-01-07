@@ -1,7 +1,7 @@
 <?php
 include '../../includes/header.php';
 ?>
-<title>Admin</title>
+<title>Fraternal Counselor</title>
 
 <?php
 include '../../includes/footer.php';

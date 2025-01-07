@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $response['role'] = $user['role'];
                     $response['message'] = 'Login successful';
                     $_SESSION['user'] = $user;
-                    $_SESSION['ROLE'] = $user['role'];
+                    
                 } else {
                     $response['message'] = 'Invalid email or password';
                 }

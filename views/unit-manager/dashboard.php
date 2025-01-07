@@ -1,7 +1,7 @@
 <?php
 include '../../includes/header.php';
 ?>
-<title>Admin</title>
+<title>Unit Manager</title>
 
 <?php
 include '../../includes/footer.php';
