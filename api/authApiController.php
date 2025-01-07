@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../connection/db.php';
 header("Content-Type: application/json");
 
@@ -40,11 +41,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
     } 
-    elseif ($action == 'login') {
-        # code...
+
+    if ($action == 'login') {
+        $email = $data['email'];
+        $password = $data['password'];
+
+        if (empty($email) || empty($password)) {
+            $response['message'] = 'Email and Password are required';
+        } else {
+            $sql = "SELECT * FROM users WHERE email = '$email'";
+            $result = mysqli_query($conn, $sql);
+
+            if (mysqli_num_rows($result) > 0) {
+                $user = mysqli_fetch_assoc($result);
+                if (password_verify($password, $user['password'])) {
+                    $response['success'] = true;
+                    $response['message'] = 'Login successful';
+                    $_SESSION['user'] = $user;
+                    $_SESSION['role'] = $user['role'];
+                } else {
+                    $response['message'] = 'Invalid email or password';
+                }
+            } else {
+                $response['message'] = 'Invalid email or password';
+            }
+        }
+
     }
 
-
-    // Return the response as JSON
+    
     echo json_encode($response);
 }

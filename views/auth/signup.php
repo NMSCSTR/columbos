@@ -79,24 +79,15 @@ include '../../includes/header.php';
     const BASE_URL = "<?php echo BASE_URL; ?>"; 
 
     function registerUser() {
-        const firstname = document.getElementById('firstname').value;
-        const lastname = document.getElementById('lastname').value;
-        const kcfapicode = document.getElementById('kcfapicode').value;
-        const email = document.getElementById('email').value;
-        const phone_number = document.getElementById('phone_number').value;
-        const role = document.getElementById('role').value;
-        const password = document.getElementById('password').value;
-        const password_confirmation = document.getElementById('password_confirmation').value;
-
         const data = {
-            firstname: firstname,
-            lastname: lastname,
-            kcfapicode: kcfapicode,
-            email: email,
-            phone_number: phone_number,
-            role: role,
-            password: password,
-            password_confirmation: password_confirmation
+            firstname: document.getElementById('firstname').value,
+            lastname: document.getElementById('lastname').value,
+            kcfapicode: document.getElementById('kcfapicode').value,
+            email: document.getElementById('email').value,
+            phone_number: document.getElementById('phone_number').value,
+            role: document.getElementById('role').value,
+            password: document.getElementById('password').value,
+            password_confirmation: document.getElementById('password_confirmation').value,
         };
 
         axios.post(`${BASE_URL}/api/authApiController.php?action=register`, data)
@@ -119,6 +110,8 @@ include '../../includes/header.php';
             Swal.fire('Error', errorMessage, 'error');
         });
     }
+
+    
 </script>
 
 <?php
