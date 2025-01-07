@@ -47,11 +47,11 @@ function loginUser() {
         .then(response => {
             if (response.data.success) {
                 console.log(response.data);
-                
+
                 Swal.fire('Success', response.data.success).then(() => {
                     const role = response.data.role;
                     let redirectUrl = '';
-                    switch (role) {
+                    switch (role) { 
                         case 'admin':
                             redirectUrl = `${BASE_URL}views/admin/dashboard.php`;
                             break;
@@ -64,7 +64,6 @@ function loginUser() {
                         case 'family-member':
                             redirectUrl = `${BASE_URL}views/family-member/dashboard.php`;
                             break;
-                        
                     }
                     window.location.href = redirectUrl;
                 });

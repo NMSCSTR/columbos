@@ -98,7 +98,7 @@ include '../../includes/header.php';
                 .then(() => {
                     setTimeout(() => {
                         window.location.href = `${BASE_URL}/views/auth/signin.php`; 
-                    }, 2000);
+                    }, 1000);
                 });
             } else {
                 Swal.fire('Error', response.data.message, 'error');

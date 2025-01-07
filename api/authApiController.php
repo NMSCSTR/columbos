@@ -56,9 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $user = mysqli_fetch_assoc($result);
                 if (password_verify($password, $user['password'])) {
                     $response['success'] = true;
+                    $response['role'] = $user['role'];
                     $response['message'] = 'Login successful';
                     $_SESSION['user'] = $user;
-                    $_SESSION['role'] = $user['role'];
+                    $_SESSION['ROLE'] = $user['role'];
                 } else {
                     $response['message'] = 'Invalid email or password';
                 }
