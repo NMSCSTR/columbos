@@ -1,4 +1,26 @@
-<?php define('BASE_URL', 'http://localhost/columbos/'); ?>
+<?php
+include dirname(__FILE__) . '/../connection/db.php';  
+
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: ' . BASE_URL . 'views/auth/signin.php');
+    exit;
+}
+
+
+$user_id = $_SESSION['user_id'];
+$fetch_user = mysqli_query($conn, "SELECT * FROM users WHERE id = '$user_id'");
+$user = mysqli_fetch_assoc($fetch_user);
+$count_unit_managers = mysqli_query($conn, "SELECT * FROM users WHERE role = 'unit-manager'");
+$count_fraternal_counselors = mysqli_query($conn, "SELECT * FROM users WHERE role = 'fraternal-counselor'");
+$count_members = mysqli_query($conn, "SELECT * FROM users WHERE role = 'member'");
+
+$count_unit_managers = mysqli_num_rows($count_unit_managers);
+$count_fraternal_counselors = mysqli_num_rows($count_fraternal_counselors);
+$count_members = mysqli_num_rows($count_members);
+
+?>
+
 
 <!doctype html>
 <html lang="en">
@@ -28,12 +50,15 @@
     <!-- SweatAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- DataTables CSS -->
+    <!-- Include DataTables CSS and JS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-
-    <!-- DataTables JS -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js">
     </script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -45,7 +70,7 @@
     }
 
     :root {
-        --main-bg-color: #009d63;
+        --main-bg-color: rgb(255, 255, 255);
         --main-text-color: #009d63;
         --second-text-color: #bbbec5;
         --second-bg-color: #c1efde;
@@ -74,11 +99,11 @@
     #wrapper {
         overflow-x: hidden;
         background-image: linear-gradient(to right,
-                #baf3d7,
-                #c2f5de,
-                #cbf7e4,
-                #d4f8ea,
-                #ddfaef);
+                rgb(255, 255, 255),
+                rgb(241, 241, 241),
+                rgb(255, 255, 255),
+                rgb(255, 255, 255),
+                rgb(199, 199, 199));
     }
 
     #sidebar-wrapper {
@@ -141,7 +166,4 @@
 </head>
 
 <body>
-<div class="d-flex" id="wrapper">
-
-       
-  
+    <div class="d-flex" id="wrapper">

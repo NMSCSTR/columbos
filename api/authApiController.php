@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = $data['email'] ?? '';
         $phone_number = $data['phone_number'] ?? '';    
         $role = $data['role'] ?? '';
+        $status = 'pending';
         $password = $data['password'] ?? '';
         $password_confirmation = $data['password_confirmation'] ?? '';
 
@@ -28,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $response['message'] = 'Password do not match.';
         } else {
             $hash_password = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO users (firstname, lastname, kcfapicode, email, phone_number, role, password)
-                        VALUES('$firstname','$lastname','$kcfapicode','$email','$phone_number','$role','$hash_password')";
+            $sql = "INSERT INTO users (firstname, lastname, kcfapicode, email, phone_number, role, status, password)
+                        VALUES('$firstname','$lastname','$kcfapicode','$email','$phone_number','$role','$status', $hash_password')";
 
             if (mysqli_query($conn, $sql)) {
                 $response['success'] = true;
@@ -49,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (empty($email) || empty($password)) {
             $response['message'] = 'Email and Password are required';
         } else {
-            $sql = "SELECT * FROM users WHERE email = '$email'";
+            $sql = "SELECT * FROM users WHERE email = '$email' AND status = 'approved'";
             $result = mysqli_query($conn, $sql);
 
             if (mysqli_num_rows($result) > 0) {
@@ -59,15 +60,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $response['role'] = $user['role'];
                     $response['message'] = 'Login successful';
                     $_SESSION['user'] = $user;
+                    $_SESSION['user_id'] = $user['id'];
                     
                 } else {
                     $response['message'] = 'Invalid email or password';
                 }
             } else {
-                $response['message'] = 'Invalid email or password';
+                $response['message'] = 'User not approved';
             }
         }
 
     } 
+
+    if ($action == 'deleteUser') {
+        $userId = $data['id'] ?? '';
+        if(empty($userId)){
+            $response['message'] = 'User ID is required';
+        } else {
+            $sql = "DELETE FROM users WHERE id = '$userId'";
+            if (mysqli_query($conn, $sql)) {
+                $response['success'] = true;
+                $response['message'] = 'User deleted successfully';
+            } else {
+                $response['message'] = 'Error deleting user: ' . mysqli_error($conn);
+            }
+        }
+    }
     echo json_encode($response);
 }

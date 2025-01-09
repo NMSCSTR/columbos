@@ -1,6 +1,5 @@
 <?php 
 define('BASE_URL', 'http://localhost/columbos/');
-
 $servername = "localhost";
 $username = "root";        
 $password = "";            

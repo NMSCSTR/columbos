@@ -1,4 +1,5 @@
 </div>
+</div>
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -24,6 +25,15 @@
     toggleButton.onclick = function() {
         el.classList.toggle("toggled");
     };
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            responsive: true
+        });
+    });
 </script>
 
 </body>
