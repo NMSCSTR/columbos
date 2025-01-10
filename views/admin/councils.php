@@ -1,12 +1,12 @@
 <?php include '../../includes/admin_header.php'; ?>
-<title>List of Users</title>
+<title>List of Councils</title>
 <?php include '../../includes/admin_sidebar.php'; ?>
 
 <!-- Page Content -->
 
 <div class="container-fluid px-4">
-    <h3 class="fs-2 mb-3">List of users</h3>
-    <div class="d-flex justify-content-between">
+    <h3 class="fs-2 mb-3">Manage councils</h3>
+    <!-- <div class="d-flex justify-content-between">
         <span class="badge text-bg-warning p-2 position-relative mb-5 shadow">
             Pending Users Approval
             <span class=" position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -21,7 +21,7 @@
                 <span class="visually-hidden">unread messages</span>
             </span>
         </span>
-    </div>
+    </div> -->
     <table id="example" class="table table-sm display responsive nowrap" style="width:100%">
         <thead>
             <tr>
@@ -39,20 +39,12 @@
                 $fetch_users = mysqli_query($conn, "SELECT * FROM users WHERE role != 'admin'");
                 while ($user = mysqli_fetch_assoc($fetch_users)) {
             ?>
-            <tr>
-                <td><?php echo $user['firstname'] ?></td>
-                <td><?php echo $user['lastname'] ?></td>
-                <td><?php echo $user['kcfapicode'] ?></td>
-                <td><?php echo $user['email'] ?></td>
-                <td><?php echo $user['phone_number'] ?></td>
-                <td><?php echo $user['role'] ?></td>
-                <td>
-                    <button onclick="deleteUser(<?php echo $user['id']; ?>)" class="btn btn-danger btn-sm">
+            <tr>    
                         Delete
                     </button>
                 </td>
-            <tr>  
-                
+
+            </tr>
             <?php } ?>
         </tbody>
     </table>
@@ -60,7 +52,7 @@
 <!-- /#page-content-wrapper -->
 
 <script>
-function deleteUser(userId) {
+function deleteCouncil(councilId) {
     const BASE_URL = "<?php echo BASE_URL; ?>";
 
     Swal.fire({

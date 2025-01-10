@@ -4,7 +4,7 @@
     <div class="list-group list-group-flush my-3">
         <a href="<?= BASE_URL ?>views/admin/dashboard.php" class="list-group-item list-group-item-action second-text fw-bold"><i
                 class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+        <a href="<?= BASE_URL ?>views/admin/councils.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                 class="fas fa-project-diagram me-2"></i>Councils</a>
         <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                 class="fas fa-chart-line me-2"></i>Fraternal Benifits</a>
