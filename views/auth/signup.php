@@ -100,11 +100,13 @@ include '../../includes/header.php';
                     }, 1000);
                 });
             } else {
+                console.log(response.data);
                 Swal.fire('Error', response.data.message, 'error');
             }
         })
         .catch(error => {
             console.error(error);
+            console.log(response.data);
             const errorMessage = error.response ? error.response.data.message : 'An unexpected error occurred!';
             Swal.fire('Error', errorMessage, 'error');
         });

@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = $data['email'] ?? '';
         $phone_number = $data['phone_number'] ?? '';    
         $role = $data['role'] ?? '';
-        $status = 'pending';
+        $status = "pending";
         $password = $data['password'] ?? '';
         $password_confirmation = $data['password_confirmation'] ?? '';
 
@@ -29,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $response['message'] = 'Password do not match.';
         } else {
             $hash_password = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO users (firstname, lastname, kcfapicode, email, phone_number, role, status, password)
-                        VALUES('$firstname','$lastname','$kcfapicode','$email','$phone_number','$role','$status', $hash_password')";
+            $sql = "INSERT INTO users (firstname, lastname, kcfapicode, email, phone_number, role, password, status)
+                        VALUES('$firstname','$lastname','$kcfapicode','$email','$phone_number','$role','$hash_password','$status')";
 
             if (mysqli_query($conn, $sql)) {
                 $response['success'] = true;
