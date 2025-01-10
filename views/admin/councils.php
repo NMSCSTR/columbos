@@ -25,26 +25,31 @@
     <table id="example" class="table table-sm display responsive nowrap" style="width:100%">
         <thead>
             <tr>
-                <th>FIRSTNAME</th>
-                <th>LASTNAME</th>
-                <th>KCFAPICODE</th>
-                <th>EMAIL</th>
-                <th>PHONE NUMBER</th>
-                <th>ROLE</th>
+                <th>COUNCIL NUMBER</th>
+                <th>COUNCIL NAME</th>
+                <th>UNIT MANAGER</th>
+                <th>FRATERNAL COUNSELOR</th>
+                <th>DATE ESTABLISHED</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <?php
-                $fetch_users = mysqli_query($conn, "SELECT * FROM users WHERE role != 'admin'");
-                while ($user = mysqli_fetch_assoc($fetch_users)) {
+                $fetch_councils = mysqli_query($conn, "SELECT * FROM council");
+                while ($user = mysqli_fetch_assoc($fetch_councils)) {
             ?>
-            <tr>    
+            <tr>
+                <td><?php echo $user['council_number'] ?></td>
+                <td><?php echo $user['council_name'] ?></td>
+                <td><?php echo $user['unit_manager_id'] ?></td>
+                <td><?php echo $user['fraternal_counselor_id'] ?></td>
+                <td><?php echo $user['date_established'] ?></td>
+                <td>
+                    <button onclick="deleteUser(<?php echo $user['id']; ?>)" class="btn btn-danger btn-sm">
                         Delete
                     </button>
                 </td>
-
-            </tr>
+            <tr>  
             <?php } ?>
         </tbody>
     </table>
