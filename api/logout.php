@@ -2,5 +2,5 @@
 session_start();
 session_destroy();
 session_unset();
-header('Location: views/auth/signin.php');
+header('Location: ../views/auth/signin.php');
 ?>

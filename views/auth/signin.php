@@ -25,7 +25,7 @@ if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control shadow" name="email" id="email" value="<?php echo htmlspecialchars($email); ?>
+                        <input type="email" class="form-control shadow" name="email" id="email" value="<?php echo htmlspecialchars($email); ?>"
                             placeholder="name@example.com">
                         <label for="email">Email address</label>
                     </div>
@@ -54,52 +54,63 @@ if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
 <script>
 function loginUser() {
 
-    const BASE_URL = "<?php echo BASE_URL; ?>";
-    const remember = document.getElementById('remember').checked;
-    const data = {
-        email: document.getElementById('email').value,
-        password: document.getElementById('password').value,
-    };
+const BASE_URL = "<?php echo BASE_URL; ?>";
+const remember = document.getElementById('remember').checked;
 
-    axios.post(`${BASE_URL}/api/authApiController.php?action=login`, data)
-        .then(response => {
-            if (response.data.success) {
-                console.log(response.data);
+// Get the email and password values from the input elements
+const email = document.getElementById('email').value;
+const password = document.getElementById('password').value;
 
-                if (remember) {
-                    document.cookie = `email=${email}; max-age=2592000; path=/`;
-                    document.cookie = `password=${password}; max-age=2592000; path=/`;
-                } else {
-                    document.cookie = `email=; max-age=0; path=/`;
-                    document.cookie = `password=; max-age=0; path=/`;
-                }
+const data = {
+    email: email,
+    password: password,
+};
 
-                Swal.fire('Success', response.data.success).then(() => {
-                    const role = response.data.role;
-                    let redirectUrl = '';
-                    switch (role) { 
-                        case 'admin':
-                            redirectUrl = `${BASE_URL}views/admin/dashboard.php`;
-                            break;
-                        case 'unit-manager':
-                            redirectUrl = `${BASE_URL}views/unit-manager/dashboard.php`;
-                            break;
-                        case 'fraternal-counselor':
-                            redirectUrl = `${BASE_URL}views/fraternal-counselor/dashboard.php`;
-                            break;
-                        case 'family-member':
-                            redirectUrl = `${BASE_URL}views/family-member/dashboard.php`;
-                            break;
-                    }
-                    window.location.href = redirectUrl;
-                });
+// Send the login request using axios
+axios.post(`${BASE_URL}/api/authApiController.php?action=login`, data)
+    .then(response => {
+        if (response.data.success) {
+            console.log(response.data);
 
+            // Handle Remember Me functionality by saving email and password in cookies
+            if (remember) {
+                document.cookie = `email=${encodeURIComponent(email)}; max-age=2592000; path=/`; // 30 days
+                document.cookie = `password=${encodeURIComponent(password)}; max-age=2592000; path=/`;
             } else {
-                Swal.fire('Error', response.data.message, 'error');
+                // Remove cookies if "Remember Me" is unchecked
+                document.cookie = `email=; max-age=0; path=/`;
+                document.cookie = `password=; max-age=0; path=/`;
             }
-        })
-        .catch(() => Swal.fire('Error', 'An expected error occurred.'));
+
+            Swal.fire('Success', response.data.success).then(() => {
+                const role = response.data.role;
+                let redirectUrl = '';
+
+                // Redirect based on user role
+                switch (role) {
+                    case 'admin':
+                        redirectUrl = `${BASE_URL}views/admin/dashboard.php`;
+                        break;
+                    case 'unit-manager':
+                        redirectUrl = `${BASE_URL}views/unit-manager/dashboard.php`;
+                        break;
+                    case 'fraternal-counselor':
+                        redirectUrl = `${BASE_URL}views/fraternal-counselor/dashboard.php`;
+                        break;
+                    case 'family-member':
+                        redirectUrl = `${BASE_URL}views/family-member/dashboard.php`;
+                        break;
+                }
+                window.location.href = redirectUrl;
+            });
+
+        } else {
+            Swal.fire('Error', response.data.message, 'error');
+        }
+    })
+    .catch(() => Swal.fire('Error', 'An unexpected error occurred.'));
 }
+
 </script>
 <?php
 include '../../includes/footer.php';
