@@ -1,6 +1,16 @@
 <?php
 include '../../includes/header.php';
+
+$email = '';
+$password = '';
+
+if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+    $email = $_COOKIE['email'];
+    $password = $_COOKIE['password'];
+}
 ?>
+
+
 
 <!-- Login Form -->
 <main>
@@ -15,15 +25,22 @@ include '../../includes/header.php';
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control shadow" name="email" id="email"
+                        <input type="email" class="form-control shadow" name="email" id="email" value="<?php echo htmlspecialchars($email); ?>
                             placeholder="name@example.com">
                         <label for="email">Email address</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control shadow" name="password" id="password"
+                        <input type="password" class="form-control shadow" name="password" id="password" value="<?php echo htmlspecialchars($password); ?>"
                             placeholder="Password">
                         <label for="password">Password</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember"  <?php echo isset($_COOKIE['email']) ? 'checked' : ''; ?>>
+                        <label class="form-check-label" for="remember">
+                            Remember me
+                        </label>
                     </div>
 
                     <button class="btn btn-primary w-100 py-2 mb-3" type="submit">Sign in</button>
@@ -38,6 +55,7 @@ include '../../includes/header.php';
 function loginUser() {
 
     const BASE_URL = "<?php echo BASE_URL; ?>";
+    const remember = document.getElementById('remember').checked;
     const data = {
         email: document.getElementById('email').value,
         password: document.getElementById('password').value,
@@ -47,6 +65,14 @@ function loginUser() {
         .then(response => {
             if (response.data.success) {
                 console.log(response.data);
+
+                if (remember) {
+                    document.cookie = `email=${email}; max-age=2592000; path=/`;
+                    document.cookie = `password=${password}; max-age=2592000; path=/`;
+                } else {
+                    document.cookie = `email=; max-age=0; path=/`;
+                    document.cookie = `password=; max-age=0; path=/`;
+                }
 
                 Swal.fire('Success', response.data.success).then(() => {
                     const role = response.data.role;
