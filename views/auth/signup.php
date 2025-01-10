@@ -68,7 +68,7 @@ include '../../includes/header.php';
                     </div>
 
                     <button class="btn btn-primary w-100 py-2 mb-3" type="submit">Register</button>
-                    <p class="text-center">Already have an account? <a href="">Sign in</a></p>
+                    <p class="text-center">Already have an account? <a href="<?php echo BASE_URL; ?>views/auth/signin.php">Sign in</a></p>
                 </form>
             </div>
         </div>

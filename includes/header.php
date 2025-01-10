@@ -62,21 +62,21 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#hero">Home</a>
+                    <a class="nav-link text-dark" href="<?php echo BASE_URL ?>index.php#hero">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#about">About</a>
+                    <a class="nav-link text-dark" href="<?php echo BASE_URL ?>index.php#about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#fraternal-benifits">Fraternal Benefits</a>
+                    <a class="nav-link text-dark" href="<?php echo BASE_URL ?>index.php#fraternal-benifits">Fraternal Benefits</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#contact">Contact</a>
+                    <a class="nav-link text-dark" href="<?php echo BASE_URL ?>index.php#contact">Contact</a>
                 </li>
             </ul>
             <div class="d-flex">
-                <a href="" class="btn btn-outline-primary me-2">Login</a>
-                <a href="" class="btn btn-primary">Get Started</a>
+                <a href="<?php echo BASE_URL ?>views/auth/signin.php" class="btn btn-outline-primary me-2">Login</a>
+                <a href="<?php echo BASE_URL ?>views/auth/signup.php" class="btn btn-primary">Get Started</a>
             </div>
         </div>
     </nav>

@@ -29,7 +29,7 @@
             confirmButtonText: `Logout`,
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = `${BASE_URL}logout.php`;
+                window.location.href = `${BASE_URL}api/logout.php`;
             }
         });
     }

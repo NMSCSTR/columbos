@@ -27,7 +27,7 @@ include '../../includes/header.php';
                     </div>
 
                     <button class="btn btn-primary w-100 py-2 mb-3" type="submit">Sign in</button>
-                    <p class="text-center">No account? <a href="">Click here!</a></p>
+                    <p class="text-center">No account? <a href="<?php echo BASE_URL; ?>views/auth/signup.php">Click here!</a></p>
                 </form>
             </div>
         </div>
