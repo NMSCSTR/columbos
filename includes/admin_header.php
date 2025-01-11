@@ -166,4 +166,13 @@ $count_members = mysqli_num_rows($count_members);
 </head>
 
 <body>
+
+    <script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            responsive: true
+        });
+    });
+    </script>
+    
     <div class="d-flex" id="wrapper">

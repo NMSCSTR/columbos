@@ -36,13 +36,6 @@
 </script>
 
 
-<script>
-    $(document).ready(function() {
-        $('#example').DataTable({
-            responsive: true
-        });
-    });
-</script>
 
 </body>
 

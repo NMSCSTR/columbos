@@ -76,4 +76,5 @@ function deleteUser(userId) {
 </script>
 
 
+
 <?php include '../../includes/admin_footer.php'; ?>
