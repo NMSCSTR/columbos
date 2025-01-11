@@ -6,22 +6,6 @@
 
 <div class="container-fluid px-4">
     <h3 class="fs-2 mb-3">List of users</h3>
-    <div class="d-flex justify-content-between">
-        <span class="badge text-bg-warning p-2 position-relative mb-5 shadow">
-            Pending Users Approval
-            <span class=" position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                99+
-                <span class="visually-hidden">unread messages</span>
-            </span>
-        </span>
-        <span class="badge text-bg-success p-2 position-relative mb-5 shadow">
-            Approved Users
-            <span class=" position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                99+
-                <span class="visually-hidden">unread messages</span>
-            </span>
-        </span>
-    </div>
     <table id="example" class="table table-sm display responsive nowrap" style="width:100%">
         <thead>
             <tr>
@@ -31,7 +15,7 @@
                 <th>EMAIL</th>
                 <th>PHONE NUMBER</th>
                 <th>ROLE</th>
-                <th>Actions</th>
+                <th>ACTIONS</th>
             </tr>
         </thead>
         <tbody>
@@ -90,9 +74,6 @@ function deleteUser(userId) {
     });
 }
 </script>
-
-
-
 
 
 <?php include '../../includes/admin_footer.php'; ?>

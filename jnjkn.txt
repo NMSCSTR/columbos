@@ -1,0 +1,19 @@
+            <?php
+                $fetch_users = mysqli_query($conn, "SELECT * FROM users WHERE role != 'admin'");
+                while ($user = mysqli_fetch_assoc($fetch_users)) {
+            ?>
+            <tr>
+                <td><?php echo $user['firstname'] ?></td>
+                <td><?php echo $user['lastname'] ?></td>
+                <td><?php echo $user['kcfapicode'] ?></td>
+                <td><?php echo $user['email'] ?></td>
+                <td><?php echo $user['phone_number'] ?></td>
+                <td><?php echo $user['role'] ?></td>
+                <td>
+                    <button onclick="deleteUser(<?php echo $user['id']; ?>)" class="btn btn-danger btn-sm">
+                        Delete
+                    </button>
+                </td>
+            <tr>  
+                
+            <?php } ?>
