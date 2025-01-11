@@ -59,24 +59,47 @@ $(document).ready(function() {
         stateSave: true,
         searching: true,
         info: true,
-        dom: 'Bfrtip', // Add buttons to the table
-        buttons: [
-            { extend: 'colvis', className: 'btn btn-info', text: '<i class="fas fa-eye"></i> Column Visibility' },
-                    { extend: 'copyHtml5', className: 'btn btn-secondary', text: '<i class="fas fa-copy"></i> Copy' },
-                    { extend: 'excelHtml5', className: 'btn btn-success', text: '<i class="fas fa-file-excel"></i> Export to Excel' },
-                    { extend: 'csvHtml5', className: 'btn btn-warning', text: '<i class="fas fa-file-csv"></i> Export to CSV' },
-                    { extend: 'pdfHtml5', className: 'btn btn-danger', text: '<i class="fas fa-file-pdf"></i> Export to PDF' },
-                    { extend: 'print', className: 'btn btn-primary', text: '<i class="fas fa-print"></i> Print' }
+        dom: 'Bfrtip',
+        buttons: [{
+                extend: 'colvis',
+                className: 'btn btn-info',
+                text: '<i class="fas fa-eye"></i> Column Visibility'
+            },
+            {
+                extend: 'copyHtml5',
+                className: 'btn btn-secondary',
+                text: '<i class="fas fa-copy"></i> Copy'
+            },
+            {
+                extend: 'excelHtml5',
+                className: 'btn btn-success',
+                text: '<i class="fas fa-file-excel"></i> Export to Excel'
+            },
+            {
+                extend: 'csvHtml5',
+                className: 'btn btn-warning',
+                text: '<i class="fas fa-file-csv"></i> Export to CSV'
+            },
+            {
+                extend: 'pdfHtml5',
+                className: 'btn btn-danger',
+                text: '<i class="fas fa-file-pdf"></i> Export to PDF'
+            },
+            {
+                extend: 'print',
+                className: 'btn btn-primary',
+                text: '<i class="fas fa-print"></i> Print'
+            }
         ],
         order: [
             [0, 'asc']
-        ], // Default sorting by the first column
+        ], 
         lengthMenu: [
             [5, 10, 25, 50, -1],
             [5, 10, 25, 50, "All"]
-        ], // Customize page length options
+        ],
         language: {
-            search: "Search Table:", // Custom search placeholder
+            search: "Search Table:",
         }
     });
 });

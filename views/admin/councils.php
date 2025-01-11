@@ -33,7 +33,7 @@
                         Delete
                     </button>
                 </td>
-            <tr>  
+            </tr>  
             <?php } ?>
         </tbody>
     </table>
