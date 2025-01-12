@@ -72,7 +72,7 @@
     <div class="card p-3">
         <table id="example" class="table table-sm display responsive nowrap caption-top" style="width:100%">
             <caption><i class="fas fa-list"></i> List of councils</caption>
-            <thead>
+            <thead class="table-dark">
                 <tr>
                     <th>COUNCIL NUMBER</th>
                     <th>COUNCIL NAME</th>
@@ -101,6 +101,16 @@
                     </td>
                 </tr>
                 <?php } ?>
+            <tfoot>
+                <tr>
+                    <th>COUNCIL NUMBER</th>
+                    <th>COUNCIL NAME</th>
+                    <th>UNIT MANAGER</th>
+                    <th>FRATERNAL COUNSELOR</th>
+                    <th>DATE ESTABLISHED</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </tfoot>
             </tbody>
         </table>
     </div>

@@ -2,31 +2,32 @@
 <div class="bg-white" id="sidebar-wrapper">
     <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">KCFAPI</div>
     <div class="list-group list-group-flush my-3">
-        <a href="<?= BASE_URL ?>views/admin/dashboard.php" class="list-group-item list-group-item-action second-text fw-bold"><i
+        <a href="<?= BASE_URL ?>views/admin/dashboard.php" class="list-group-item list-group-item-action second-text fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-        <a href="<?= BASE_URL ?>views/admin/councils.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+        <a href="<?= BASE_URL ?>views/admin/councils.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-project-diagram me-2"></i>Councils</a>
-        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-chart-line me-2"></i>Fraternal Benifits</a>
-        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+        <a href="#" class="list-group-item bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-paperclip me-2"></i>Forms</a>
         <a href="<?= BASE_URL ?>views/admin/listofusers.php"
-            class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+            class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4">
             <i class="fas fa-user me-2"></i>Users
         </a>
 
-        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-comment-dots me-2"></i>Chat</a>
-        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-map-marker-alt me-2"></i>Applications</a>
-        <a href="<?= BASE_URL ?>api/logout.php" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+        <a href="<?= BASE_URL ?>api/logout.php" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-power-off me-2"></i>Logout</a>
     </div>
 </div>
+
 <!-- /#sidebar-wrapper -->
 
 <div id="page-content-wrapper">
-    <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4 mb-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
             <h4 class="fs-4 m-0">Knights of Columbus Fraternal Association of the Philippines Inc.</h4>

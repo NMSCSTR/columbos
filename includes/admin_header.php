@@ -165,6 +165,8 @@ $count_members = mysqli_num_rows($count_members);
                 margin-left: -15rem;
             }
         }
+
+        
     </style>
 </head>
 
