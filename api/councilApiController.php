@@ -30,5 +30,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
+
+    if ($action == 'updateCouncil') {
+        $council_number = $data['council_number'] ?? '';
+        $council_name = $data['council_name'] ?? '';
+        $unit_manager_id = $data['unit_manager_id'] ?? '';
+        $fraternal_counselor_id = $data['fraternal_counselor_id'] ?? '';
+        $date_established = $data['date_established'] ?? '';
+        $id = $data['council_id'] ?? '';
+
+        if (empty($council_number) || empty($council_name) || empty($unit_manager_id) || empty($fraternal_counselor_id) || empty($date_established) || empty($id)) {
+            $response['message'] = 'All fields are required.';
+        } else {
+            $sql = "UPDATE council SET council_number='$council_number', council_name='$council_name', unit_manager_id='$unit_manager_id', fraternal_counselor_id='$fraternal_counselor_id', date_established='$date_established' WHERE id='$id'";
+
+            if (mysqli_query($conn, $sql)) {
+                $response['success'] = true;
+                $response['message'] = 'Council updated successfully';
+            } else {
+                $response['message'] = 'Council failed to update';
+            }
+        }
+    }
+    echo json_encode($response);
 }
+
 ?>

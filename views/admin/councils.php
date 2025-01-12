@@ -73,7 +73,7 @@
             </div>
             <div class="modal-body">
                 <form onSubmit="event.preventDefault(); updateCouncil();" method="post">
-                    <input type="hidden" id="council_id" name="council_id">
+                    <input type="text" id="council_id" name="council_id">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="update_council_number" name="council_number"
                             placeholder="Council Number">
@@ -196,7 +196,7 @@ flatpickr("#date_established", {
 const BASE_URL = "<?php echo BASE_URL; ?>";
 
 function loadCouncilData(councilId, councilNumber, councilName, unitManagerId, fraternalCounselorId, dateEstablished) {
-    // Set the values in the modal form fields
+    
     document.getElementById('council_id').value = councilId;
     document.getElementById('update_council_number').value = councilNumber;
     document.getElementById('update_council_name').value = councilName;
