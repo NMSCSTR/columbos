@@ -52,6 +52,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
+
+    if ($action == 'deleteCouncil') {
+        $id = $data['councilId'] ?? '';
+
+        if (empty($id)) {
+            $response['message'] = 'Council ID is required.';
+        } else {
+            $sql = "DELETE FROM council WHERE council_id='$id'";
+
+            if (mysqli_query($conn, $sql)) {
+                $response['success'] = true;
+                $response['message'] = 'Council deleted successfully';
+            } else {
+                $response['message'] = 'Council failed to delete';
+            }
+        }
+    }
     echo json_encode($response);
 }
 

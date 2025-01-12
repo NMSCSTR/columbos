@@ -44,10 +44,10 @@
 
                         <td>
                             <button onclick="deleteUser(<?php echo $user['id']; ?>)" class="btn btn-danger btn-sm">
-                                Delete
+                                <i class="fas fa-trash-alt"></i> Delete
                             </button>
                             <button onclick="approvedUser(<?php echo $user['id']; ?>)" class="btn btn-success btn-sm">
-                                Approve
+                                <i class="fas fa-check"></i> Approve
                             </button>
                         </td>
                     </tr>

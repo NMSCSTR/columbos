@@ -155,14 +155,13 @@
                     <td>
                         <button onclick="deleteCouncil(<?php echo $council['council_id']; ?>)"
                             class="btn btn-danger btn-sm">
-                            Delete
+                            <i class="fas fa-trash-alt"></i> Delete
                         </button>
                         <button
                             onclick="loadCouncilData(<?php echo $council['council_id']; ?>, '<?php echo $council['council_number']; ?>', '<?php echo $council['council_name']; ?>', '<?php echo $council['unit_manager_id']; ?>', '<?php echo $council['fraternal_counselor_id']; ?>', '<?php echo $council['date_established']; ?>')"
                             class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateCouncilModal">
-                            Update
+                            <i class="fas fa-edit"></i> Update
                         </button>
-
                     </td>
                 </tr>
                 <?php } ?>
@@ -193,7 +192,7 @@ flatpickr("#date_established", {
 </script>
 
 <script>
-const BASE_URL = "<?php echo BASE_URL; ?>";
+
 
 function loadCouncilData(councilId, councilNumber, councilName, unitManagerId, fraternalCounselorId, dateEstablished) {
 
@@ -206,6 +205,7 @@ function loadCouncilData(councilId, councilNumber, councilName, unitManagerId, f
 }
 
 function updateCouncil() {
+    const BASE_URL = "<?php echo BASE_URL; ?>";
     const council_id = document.getElementById('council_id').value;
     const council_number = document.getElementById('update_council_number').value;
     const council_name = document.getElementById('update_council_name').value;
@@ -238,6 +238,7 @@ function updateCouncil() {
 }
 
 function addCouncil() {
+    const BASE_URL = "<?php echo BASE_URL; ?>";
     const council_number = document.getElementById('council_number').value;
     const council_name = document.getElementById('council_name').value;
     const unit_manager_id = document.getElementById('unit_manager_id').value;
@@ -267,11 +268,8 @@ function addCouncil() {
         .catch(() => Swal.fire('Error', 'An unexpected error occurred.', 'error'));
 }
 
-
-
-
 function deleteCouncil(councilId) {
-
+    const BASE_URL = "<?php echo BASE_URL; ?>";
     Swal.fire({
         title: 'Are you sure?',
         text: "This action cannot be undone!",
@@ -282,8 +280,8 @@ function deleteCouncil(councilId) {
         confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
         if (result.isConfirmed) {
-            axios.post(`${BASE_URL}/api/authApiController.php?action=deleteUser`, {
-                    id: userId
+            axios.post(`${BASE_URL}/api/councilApiController.php?action=deleteCouncil`, {
+                councilId: councilId
                 })
                 .then(response => {
                     if (response.data.success) {
