@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (empty($council_number) || empty($council_name) || empty($unit_manager_id) || empty($fraternal_counselor_id) || empty($date_established) || empty($id)) {
             $response['message'] = 'All fields are required.';
         } else {
-            $sql = "UPDATE council SET council_number='$council_number', council_name='$council_name', unit_manager_id='$unit_manager_id', fraternal_counselor_id='$fraternal_counselor_id', date_established='$date_established' WHERE id='$id'";
+            $sql = "UPDATE council SET council_number='$council_number', council_name='$council_name', unit_manager_id='$unit_manager_id', fraternal_counselor_id='$fraternal_counselor_id', date_established='$date_established' WHERE council_id='$id'";
 
             if (mysqli_query($conn, $sql)) {
                 $response['success'] = true;

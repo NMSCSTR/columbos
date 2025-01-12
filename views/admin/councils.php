@@ -207,11 +207,11 @@ function loadCouncilData(councilId, councilNumber, councilName, unitManagerId, f
 
 function updateCouncil() {
     const council_id = document.getElementById('council_id').value;
-    const council_number = document.getElementById('council_number').value;
-    const council_name = document.getElementById('council_name').value;
-    const unit_manager_id = document.getElementById('unit_manager_id').value;
-    const fraternal_counselor_id = document.getElementById('fraternal_counselor_id').value;
-    const date_established = document.getElementById('date_established').value;
+    const council_number = document.getElementById('update_council_number').value;
+    const council_name = document.getElementById('update_council_name').value;
+    const unit_manager_id = document.getElementById('update_unit_manager_id').value;
+    const fraternal_counselor_id = document.getElementById('update_fraternal_counselor_id').value;
+    const date_established = document.getElementById('update_date_established').value;
 
     const data = {
         council_id: council_id,
