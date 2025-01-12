@@ -73,7 +73,6 @@ function loginUser() {
             if (response.data.success) {
                 console.log(response.data);
 
-                // Handle Remember Me functionality by saving email and password in cookies
                 if (remember) {
                     document.cookie = `email=${encodeURIComponent(email)}; max-age=2592000; path=/`; // 30 days
                     document.cookie = `password=${encodeURIComponent(password)}; max-age=2592000; path=/`;

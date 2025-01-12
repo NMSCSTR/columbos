@@ -13,7 +13,7 @@
     </div>
     <div class="offcanvas-body">
         <div>
-            <form action="" method="post">
+            <form onSubmit="event.preventDefault() ; addCouncil();" method="post">
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="council_number" name="council_number"
                         placeholder="Council Number">
@@ -50,7 +50,8 @@
                     <label for="fraternal_counselor_id">Fraternal Counselor</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="date_established" name="date_established" placeholder="Date and Time Established">
+                    <input type="text" class="form-control" id="date_established" name="date_established"
+                        placeholder="Date and Time Established">
                     <label for="date_established">Date and Time Established</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -68,54 +69,58 @@
             <i class="fas fa-plus"></i> Add Council
         </button>
     </div>
-    <table id="example" class="table table-sm display responsive nowrap caption-top" style="width:100%">
-        <caption>List of councils</caption>
-        <thead>
-            <tr>
-                <th>COUNCIL NUMBER</th>
-                <th>COUNCIL NAME</th>
-                <th>UNIT MANAGER</th>
-                <th>FRATERNAL COUNSELOR</th>
-                <th>DATE ESTABLISHED</th>
-                <th>ACTIONS</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
+    <div class="card p-3">
+        <table id="example" class="table table-sm display responsive nowrap caption-top" style="width:100%">
+            <caption><i class="fas fa-list"></i> List of councils</caption>
+            <thead>
+                <tr>
+                    <th>COUNCIL NUMBER</th>
+                    <th>COUNCIL NAME</th>
+                    <th>UNIT MANAGER</th>
+                    <th>FRATERNAL COUNSELOR</th>
+                    <th>DATE ESTABLISHED</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
                 $fetch_councils = mysqli_query($conn, "SELECT * FROM council");
-                while ($user = mysqli_fetch_assoc($fetch_councils)) {
+                while ($council = mysqli_fetch_assoc($fetch_councils)) {
             ?>
-            <tr>
-                <td><?php echo $user['council_number'] ?></td>
-                <td><?php echo $user['council_name'] ?></td>
-                <td><?php echo $user['unit_manager_id'] ?></td>
-                <td><?php echo $user['fraternal_counselor_id'] ?></td>
-                <td><?php echo $user['date_established'] ?></td>
-                <td>
-                    <button onclick="deleteUser(<?php echo $user['id']; ?>)" class="btn btn-danger btn-sm">
-                        Delete
-                    </button>
-                </td>
-            </tr>
-            <?php } ?>
-        </tbody>
-    </table>
+                <tr>
+                    <td><?php echo $council['council_number'] ?></td>
+                    <td><?php echo $council['council_name'] ?></td>
+                    <td><?php echo $council['unit_manager_id'] ?></td>
+                    <td><?php echo $council['fraternal_counselor_id'] ?></td>
+                    <td><?php echo $council['date_established'] ?></td>
+                    <td>
+                        <button onclick="deleteCouncil(<?php echo $council['council_id']; ?>)"
+                            class="btn btn-danger btn-sm">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+
 </div>
 <!-- /#page-content-wrapper -->
 <script>
-    flatpickr("#date_established", {
-        enableTime: true,
-        dateFormat: "Y-m-d H:i",
-        altInput: true,
-        altFormat: "F j, Y, H:i",
-        time_24hr: true
-    });
+flatpickr("#date_established", {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    altInput: true,
+    altFormat: "F j, Y, H:i",
+    time_24hr: true
+});
 </script>
 
 <script>
 const BASE_URL = "<?php echo BASE_URL; ?>";
 
-function addCouncil(){
+function addCouncil() {
     const council_number = document.getElementById('council_number').value;
     const council_name = document.getElementById('council_name').value;
     const unit_manager_id = document.getElementById('unit_manager_id').value;
@@ -133,10 +138,12 @@ function addCouncil(){
     axios.post(`${BASE_URL}/api/councilApiController.php?action=addCouncil`, data)
         .then(response => {
             if (response.data.success) {
+                console.log(response.data);
                 Swal.fire('Success', response.data.message, 'success').then(() => {
                     location.reload();
                 });
             } else {
+                console.log(response.data);
                 Swal.fire('Error', response.data.message, 'error');
             }
         })

@@ -19,6 +19,8 @@ $count_unit_managers = mysqli_num_rows($count_unit_managers);
 $count_fraternal_counselors = mysqli_num_rows($count_fraternal_counselors);
 $count_members = mysqli_num_rows($count_members);
 
+
+
 ?>
 
 
@@ -60,6 +62,7 @@ $count_members = mysqli_num_rows($count_members);
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
+    <!-- Date Picker -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
@@ -71,9 +74,9 @@ $count_members = mysqli_num_rows($count_members);
 
         :root {
             --main-bg-color: rgb(255, 255, 255);
-            --main-text-color: #009d63;
+            --main-text-color:rgb(0, 0, 0);
             --second-text-color: #bbbec5;
-            --second-bg-color: #c1efde;
+            --second-bg-color:rgb(225, 225, 225);
         }
 
         .primary-text {
@@ -103,7 +106,7 @@ $count_members = mysqli_num_rows($count_members);
                     rgb(241, 241, 241),
                     rgb(255, 255, 255),
                     rgb(255, 255, 255),
-                    rgb(199, 199, 199));
+                    rgb(232, 232, 232));
         }
 
         #sidebar-wrapper {

@@ -6,11 +6,12 @@
 
 <div class="container-fluid px-4">
     <!-- <h3 class="fs-2 mb-3">List of users</h3> -->
-    <div class="table-responsive">
-        <table id="example" class="table table-striped  table-sm display responsive nowrap caption-top"
+     <div class="card p-3">
+     <div class="table-responsive">
+        <table id="example" class="table table-bordered  table-sm display responsive nowrap caption-top"
             style="width:100%">
             <caption>List of users</caption>
-            <thead>
+            <thead class="table-dark">
                 <tr>
                     <th>FIRSTNAME</th>
                     <th>LASTNAME</th>
@@ -64,6 +65,8 @@
             </tbody>
         </table>
     </div>
+     </div>
+   
 
 </div>
 <!-- /#page-content-wrapper -->
