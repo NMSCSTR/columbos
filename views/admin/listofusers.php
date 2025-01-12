@@ -7,8 +7,9 @@
 <div class="container-fluid px-4">
     <!-- <h3 class="fs-2 mb-3">List of users</h3> -->
     <div class="table-responsive">
-        <table id="example" class="table table-striped table-sm display responsive nowrap caption-top" style="width:100%">
-        <caption>List of users</caption>
+        <table id="example" class="table table-striped  table-sm display responsive nowrap caption-top"
+            style="width:100%">
+            <caption>List of users</caption>
             <thead>
                 <tr>
                     <th>FIRSTNAME</th>
@@ -22,10 +23,10 @@
                 </tr>
             </thead>
             <tbody>
-            <?php
+                <?php
                 $fetch_users = mysqli_query($conn, "SELECT * FROM users WHERE role != 'admin'");
                 while ($user = mysqli_fetch_assoc($fetch_users)) { ?>
-            
+
                 <tr>
                     <td><?php echo $user['firstname'] ?></td>
                     <td><?php echo $user['lastname'] ?></td>
@@ -47,21 +48,19 @@
                         </button>
                     </td>
                 </tr>
-
+                <?php } ?>
             <tfoot>
-
+                <tr>
+                    <th>FIRSTNAME</th>
+                    <th>LASTNAME</th>
+                    <th>KCFAPICODE</th>
+                    <th>EMAIL</th>
+                    <th>PHONE NUMBER</th>
+                    <th>ROLE</th>
+                    <th>STATUS</th>
+                    <th>ACTIONS</th>
+                </tr>
             </tfoot>
-            <?php } ?>
-            <tr>
-                <th>FIRSTNAME</th>
-                <th>LASTNAME</th>
-                <th>KCFAPICODE</th>
-                <th>EMAIL</th>
-                <th>PHONE NUMBER</th>
-                <th>ROLE</th>
-                <th>STATUS</th>
-                <th>ACTIONS</th>
-            </tr>
             </tbody>
         </table>
     </div>
