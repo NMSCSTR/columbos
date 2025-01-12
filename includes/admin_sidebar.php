@@ -1,12 +1,18 @@
 <!-- Sidebar -->
 <div class="bg-white" id="sidebar-wrapper">
-    <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">KCFAPI</div>
+    <img src="http://localhost/kcfapi_app/resources/images/kcf.png" class="img-fluid d-block mx-auto mt-3" width="50" alt=""
+        srcset="">
+
+    <!-- <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">KCFAPI</div> -->
     <div class="list-group list-group-flush my-3">
-        <a href="<?= BASE_URL ?>views/admin/dashboard.php" class="list-group-item list-group-item-action second-text fw-bold text-decoration-none py-3 px-4"><i
+        <a href="<?= BASE_URL ?>views/admin/dashboard.php"
+            class="list-group-item list-group-item-action second-text fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-        <a href="<?= BASE_URL ?>views/admin/councils.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
+        <a href="<?= BASE_URL ?>views/admin/councils.php"
+            class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-project-diagram me-2"></i>Councils</a>
-        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
+        <a href="#"
+            class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-chart-line me-2"></i>Fraternal Benifits</a>
         <a href="#" class="list-group-item bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-paperclip me-2"></i>Forms</a>
@@ -15,11 +21,14 @@
             <i class="fas fa-user me-2"></i>Users
         </a>
 
-        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
+        <a href="#"
+            class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-comment-dots me-2"></i>Chat</a>
-        <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
+        <a href="#"
+            class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-map-marker-alt me-2"></i>Applications</a>
-        <a href="<?= BASE_URL ?>api/logout.php" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold text-decoration-none py-3 px-4"><i
+        <a href="<?= BASE_URL ?>api/logout.php"
+            class="list-group-item list-group-item-action bg-transparent text-danger fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-power-off me-2"></i>Logout</a>
     </div>
 </div>
@@ -46,7 +55,7 @@
                         <i class="fas fa-user me-2"></i><?php echo $user['firstname'] . ' ' . $user['lastname'];?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="<?= BASE_URL ?>views/admin/profile.php">Profile</a></li>
                         <li><a class="dropdown-item" href="#">Settings</a></li>
                         <li><a class="dropdown-item" onclick="logout()">Logout</a></li>
                     </ul>
