@@ -10,7 +10,7 @@
         <div class="table-responsive">
             <table id="example" class="table table-bordered  table-sm display responsive nowrap caption-top"
                 style="width:100%">
-                <caption>List of users</caption>
+                <caption><i class="fas fa-list"></i> List of users</caption>
                 <hr class="border border-primary border-3 opacity-75">
                 <thead class="table-dark">
                     <tr>
@@ -26,11 +26,11 @@
                 </thead>
                 <tbody>
                     <?php
-                $fetch_users = mysqli_query($conn, "SELECT * FROM users WHERE role != 'admin'");
-                while ($user = mysqli_fetch_assoc($fetch_users)) { ?>
+                        $fetch_users = mysqli_query($conn, "SELECT * FROM users WHERE role != 'admin'");
+                        while ($user = mysqli_fetch_assoc($fetch_users)) { ?>
 
                     <tr>
-                        <td><span
+                        <td><span  style="width: 120px; height: 40px; display: flex; justify-content: center; align-items: center; text-transform: uppercase;"
                                 class="badge <?php echo $user['status'] == 'approved' ? 'text-bg-success shadow p-2' : ($user['status'] == 'pending' ? 'text-bg-warning shadow p-2' : ''); ?>">
                                 <?php echo strtoupper($user['status']); ?>
                             </span>
@@ -39,8 +39,8 @@
                         <td><?php echo $user['lastname'] ?></td>
                         <td><?php echo $user['kcfapicode'] ?></td>
                         <td><?php echo $user['email'] ?></td>
-                        <td><?php echo $user['phone_number'] ?></td>
-                        <td><?php echo $user['role'] ?></td>
+                        <td><?php echo $user['phone_number'] ?> <span><i class="fas fa-message float-end text-primary"></i></span></td>
+                        <td><?php echo ucfirst($user['role']) ?></td>
 
                         <td>
                             <button onclick="deleteUser(<?php echo $user['id']; ?>)" class="btn btn-danger btn-sm">

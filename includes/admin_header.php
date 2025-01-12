@@ -53,12 +53,20 @@ $count_members = mysqli_num_rows($count_members);
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Include DataTables CSS and JS -->
-<!-- DataTables CSS and JS -->
+    <!-- DataTables CSS and JS -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/rowreorder/1.3.0/css/rowReorder.dataTables.min.css">
+
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 
-    
+
+    <!-- RowReorder Extension CSS -->
+
+    <!-- RowReorder Extension JS -->
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/rowreorder/1.3.0/js/dataTables.rowReorder.min.js"></script>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -68,110 +76,108 @@ $count_members = mysqli_num_rows($count_members);
 
     <!-- Custom CSS -->
     <style>
-        * {
-            font-family: 'Poppins', sans-serif;
-        }
+    * {
+        font-family: 'Poppins', sans-serif;
+    }
 
-        :root {
-            --main-bg-color: rgb(255, 255, 255);
-            --main-text-color:rgb(0, 0, 0);
-            --second-text-color: #bbbec5;
-            --second-bg-color:rgb(225, 225, 225);
-        }
+    :root {
+        --main-bg-color: rgb(255, 255, 255);
+        --main-text-color: rgb(0, 0, 0);
+        --second-text-color: #bbbec5;
+        --second-bg-color: rgb(225, 225, 225);
+    }
 
-        .primary-text {
-            color: var(--main-text-color);
-        }
+    .primary-text {
+        color: var(--main-text-color);
+    }
 
-        .second-text {
-            color: var(--second-text-color);
-        }
+    .second-text {
+        color: var(--second-text-color);
+    }
 
-        .primary-bg {
-            background-color: var(--main-bg-color);
-        }
+    .primary-bg {
+        background-color: var(--main-bg-color);
+    }
 
-        .secondary-bg {
-            background-color: var(--second-bg-color);
-        }
+    .secondary-bg {
+        background-color: var(--second-bg-color);
+    }
 
-        .rounded-full {
-            border-radius: 100%;
-        }
+    .rounded-full {
+        border-radius: 100%;
+    }
 
-        #wrapper {
-            overflow-x: hidden;
-            background-image: linear-gradient(to right,
-                    rgb(255, 255, 255),
-                    rgb(241, 241, 241),
-                    rgb(255, 255, 255),
-                    rgb(255, 255, 255),
-                    rgb(232, 232, 232));
-        }
+    #wrapper {
+        overflow-x: hidden;
+        background-image: linear-gradient(to right,
+                rgb(255, 255, 255),
+                rgb(241, 241, 241),
+                rgb(255, 255, 255),
+                rgb(255, 255, 255),
+                rgb(232, 232, 232));
+    }
 
+    #sidebar-wrapper {
+        min-height: 100vh;
+        margin-left: -15rem;
+        -webkit-transition: margin 0.25s ease-out;
+        -moz-transition: margin 0.25s ease-out;
+        -o-transition: margin 0.25s ease-out;
+        transition: margin 0.25s ease-out;
+    }
+
+    #sidebar-wrapper .sidebar-heading {
+        padding: 0.875rem 1.25rem;
+        font-size: 1.2rem;
+    }
+
+    #sidebar-wrapper .list-group {
+        width: 15rem;
+    }
+
+    #page-content-wrapper {
+        min-width: 100vw;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #menu-toggle {
+        cursor: pointer;
+    }
+
+    .list-group-item {
+        border: none;
+        padding: 20px 30px;
+    }
+
+    .list-group-item.active {
+        background-color: transparent;
+        color: var(--main-text-color);
+        font-weight: bold;
+        border: none;
+    }
+
+    @media (min-width: 768px) {
         #sidebar-wrapper {
-            min-height: 100vh;
-            margin-left: -15rem;
-            -webkit-transition: margin 0.25s ease-out;
-            -moz-transition: margin 0.25s ease-out;
-            -o-transition: margin 0.25s ease-out;
-            transition: margin 0.25s ease-out;
-        }
-
-        #sidebar-wrapper .sidebar-heading {
-            padding: 0.875rem 1.25rem;
-            font-size: 1.2rem;
-        }
-
-        #sidebar-wrapper .list-group {
-            width: 15rem;
-        }
-
-        #page-content-wrapper {
-            min-width: 100vw;
-        }
-
-        #wrapper.toggled #sidebar-wrapper {
             margin-left: 0;
         }
 
-        #menu-toggle {
-            cursor: pointer;
+        #page-content-wrapper {
+            min-width: 0;
+            width: 100%;
         }
 
-        .list-group-item {
-            border: none;
-            padding: 20px 30px;
+        #wrapper.toggled #sidebar-wrapper {
+            margin-left: -15rem;
         }
-
-        .list-group-item.active {
-            background-color: transparent;
-            color: var(--main-text-color);
-            font-weight: bold;
-            border: none;
-        }
-
-        @media (min-width: 768px) {
-            #sidebar-wrapper {
-                margin-left: 0;
-            }
-
-            #page-content-wrapper {
-                min-width: 0;
-                width: 100%;
-            }
-
-            #wrapper.toggled #sidebar-wrapper {
-                margin-left: -15rem;
-            }
-        }
-
-        
+    }
     </style>
 </head>
 
 <body>
-    
+
 
 
     <div class="d-flex" id="wrapper">

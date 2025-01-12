@@ -14,16 +14,16 @@
         <a href="#"
             class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-chart-line me-2"></i>Fraternal Benifits</a>
-        <a href="#" class="list-group-item bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
+        <a href="<?= BASE_URL ?>views/admin/forms.php" class="list-group-item bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-paperclip me-2"></i>Forms</a>
         <a href="<?= BASE_URL ?>views/admin/listofusers.php"
             class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4">
             <i class="fas fa-user me-2"></i>Users
         </a>
 
-        <a href="#"
+        <a href="<?= BASE_URL ?>views/admin/meetings.php"
             class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
-                class="fas fa-comment-dots me-2"></i>Chat</a>
+                class="fas fa-comment-dots me-2"></i>Meetings</a>
         <a href="#"
             class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-map-marker-alt me-2"></i>Applications</a>
@@ -39,7 +39,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h4 class="fs-4 m-0">Knights of Columbus Fraternal Association of the Philippines Inc.</h4>
+            <h4 class="fs-4 m-0 fw-bolder" style="color:rgb(6, 3, 148);">Knights of Columbus Fraternal Association of the Philippines Inc.</h4>
         </div>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

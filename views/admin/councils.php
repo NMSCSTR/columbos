@@ -123,8 +123,8 @@
 
 <div class="container-fluid">
     <div class="d-flex justify-content-start">
-        <button class="btn btn-success mb-3 shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
-            aria-controls="staticBackdrop">
+        <button class="btn btn-success mb-3 shadow" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
             <i class="fas fa-plus"></i> Add Council
         </button>
     </div>
@@ -143,9 +143,9 @@
             </thead>
             <tbody>
                 <?php
-                $fetch_councils = mysqli_query($conn, "SELECT * FROM council");
-                while ($council = mysqli_fetch_assoc($fetch_councils)) {
-            ?>
+                    $fetch_councils = mysqli_query($conn, "SELECT * FROM council");
+                    while ($council = mysqli_fetch_assoc($fetch_councils)) {
+                ?>
                 <tr>
                     <td><?php echo $council['council_number'] ?></td>
                     <td><?php echo $council['council_name'] ?></td>
@@ -192,8 +192,6 @@ flatpickr("#date_established", {
 </script>
 
 <script>
-
-
 function loadCouncilData(councilId, councilNumber, councilName, unitManagerId, fraternalCounselorId, dateEstablished) {
 
     document.getElementById('council_id').value = councilId;
@@ -281,7 +279,7 @@ function deleteCouncil(councilId) {
     }).then((result) => {
         if (result.isConfirmed) {
             axios.post(`${BASE_URL}/api/councilApiController.php?action=deleteCouncil`, {
-                councilId: councilId
+                    councilId: councilId
                 })
                 .then(response => {
                     if (response.data.success) {

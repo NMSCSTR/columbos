@@ -54,7 +54,8 @@ $(document).ready(function() {
         scrollY: '200px',
         scrollCollapse: true,
         paging: true,
-        rowReorder: true,
+        rowReorder: { selector: 'td:not(:first-child)' },
+        
         fixedHeader: true,
         stateSave: true,
         searching: true,
@@ -87,7 +88,7 @@ $(document).ready(function() {
             },
             {
                 extend: 'print',
-                className: 'btn btn-primary',
+                className: 'btn btn-primary shadow',
                 text: '<i class="fas fa-print"></i> Print'
             }
         ],
