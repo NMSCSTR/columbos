@@ -86,6 +86,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
-    
+
+    if ($action == 'approvedUser') {
+        $userId = $data['id'] ?? '';
+        if(empty($userId)){
+            $response['message'] = 'User ID is required';
+        } else {
+            $sql = "UPDATE users SET status = 'approved' WHERE id = '$userId'";
+            if (mysqli_query($conn, $sql)) {
+                $response['success'] = true;
+                $response['message'] = 'User approved successfully';
+            } else {
+                $response['message'] = 'Error approving user: ' . mysqli_error($conn);
+            }
+        }
+    }
+
     echo json_encode($response);
 }

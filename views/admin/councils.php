@@ -123,7 +123,7 @@
 
 <div class="container-fluid">
     <div class="d-flex justify-content-start">
-        <button class="btn btn-success mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
+        <button class="btn btn-success mb-3 shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
             aria-controls="staticBackdrop">
             <i class="fas fa-plus"></i> Add Council
         </button>
@@ -196,7 +196,7 @@ flatpickr("#date_established", {
 const BASE_URL = "<?php echo BASE_URL; ?>";
 
 function loadCouncilData(councilId, councilNumber, councilName, unitManagerId, fraternalCounselorId, dateEstablished) {
-    
+
     document.getElementById('council_id').value = councilId;
     document.getElementById('update_council_number').value = councilNumber;
     document.getElementById('update_council_name').value = councilName;
@@ -287,10 +287,12 @@ function deleteCouncil(councilId) {
                 })
                 .then(response => {
                     if (response.data.success) {
+                        console.log(response.data);
                         Swal.fire('Deleted!', response.data.message, 'success').then(() => {
                             location.reload();
                         });
                     } else {
+                        console.log(response.data);
                         Swal.fire('Error', response.data.message, 'error');
                     }
                 })
