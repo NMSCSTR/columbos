@@ -30,8 +30,9 @@
                         <?php
                             $fetch_unit_managers = mysqli_query($conn, "SELECT * FROM users WHERE role = 'unit-manager'");
                             while ($manager = mysqli_fetch_assoc($fetch_unit_managers)) { ?>
-                                <option value="<?php echo $manager['id']; ?>"><?php echo $manager['firstname'] . ' ' . $manager['lastname'] ; ?></option>
-                            <?php } ?>
+                        <option value="<?php echo $manager['id']; ?>">
+                            <?php echo $manager['firstname'] . ' ' . $manager['lastname'] ; ?></option>
+                        <?php } ?>
                     </select>
                     <label for="unit_manager_id">Unit Manager</label>
                 </div>
@@ -41,16 +42,16 @@
                         <?php
                             $fetch_counselors = mysqli_query($conn, "SELECT * FROM users WHERE role = 'fraternal-counselor'");
                             while ($counselor = mysqli_fetch_assoc($fetch_counselors)) { ?>
-                                <option value="<?php echo $counselor['id']; ?>"><?php echo $counselor['firstname'] . ' ' . $counselor['lastname'] ; ?></option>
-                            <?php } ?>
-                     
+                        <option value="<?php echo $counselor['id']; ?>">
+                            <?php echo $counselor['firstname'] . ' ' . $counselor['lastname'] ; ?></option>
+                        <?php } ?>
+
                     </select>
                     <label for="fraternal_counselor_id">Fraternal Counselor</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="date" class="form-control" id="date_established" name="date_established"
-                        placeholder="Date Established">
-                    <label for="date_established">Date Established</label>
+                    <input type="text" class="form-control" id="date_established" name="date_established" placeholder="Date and Time Established">
+                    <label for="date_established">Date and Time Established</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
@@ -101,10 +102,51 @@
     </table>
 </div>
 <!-- /#page-content-wrapper -->
+<script>
+    flatpickr("#date_established", {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        altInput: true,
+        altFormat: "F j, Y, H:i",
+        time_24hr: true
+    });
+</script>
 
 <script>
+const BASE_URL = "<?php echo BASE_URL; ?>";
+
+function addCouncil(){
+    const council_number = document.getElementById('council_number').value;
+    const council_name = document.getElementById('council_name').value;
+    const unit_manager_id = document.getElementById('unit_manager_id').value;
+    const fraternal_counselor_id = document.getElementById('fraternal_counselor_id').value;
+    const date_established = document.getElementById('date_established').value;
+
+    const data = {
+        council_number: council_number,
+        council_name: council_name,
+        unit_manager_id: unit_manager_id,
+        fraternal_counselor_id: fraternal_counselor_id,
+        date_established: date_established
+    };
+
+    axios.post(`${BASE_URL}/api/councilApiController.php?action=addCouncil`, data)
+        .then(response => {
+            if (response.data.success) {
+                Swal.fire('Success', response.data.message, 'success').then(() => {
+                    location.reload();
+                });
+            } else {
+                Swal.fire('Error', response.data.message, 'error');
+            }
+        })
+        .catch(() => Swal.fire('Error', 'An unexpected error occurred.', 'error'));
+}
+
+
+
+
 function deleteCouncil(councilId) {
-    const BASE_URL = "<?php echo BASE_URL; ?>";
 
     Swal.fire({
         title: 'Are you sure?',
