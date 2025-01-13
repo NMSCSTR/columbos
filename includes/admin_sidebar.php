@@ -1,9 +1,9 @@
 <!-- Sidebar -->
 <div class="bg-transparent shadow" id="sidebar-wrapper">
-    <img src="http://localhost/kcfapi_app/resources/images/kcf.png" class="img-fluid d-block mx-auto mt-3" width="50" alt=""
-        srcset="">
+    <img src="http://localhost/kcfapi_app/resources/images/kcf.png" class="img-fluid d-block mx-auto mt-3" width="50"
+        alt="" srcset="">
 
-    <!-- <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">KCFAPI</div> -->
+    <!-- Sidebar Navigation -->
     <div class="list-group list-group-flush my-3">
         <a href="<?= BASE_URL ?>views/admin/dashboard.php"
             class="list-group-item list-group-item-action second-text fw-bold text-decoration-none py-3 px-4"><i
@@ -11,16 +11,30 @@
         <a href="<?= BASE_URL ?>views/admin/councils.php"
             class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-project-diagram me-2"></i>Councils</a>
-        <a href="<?= BASE_URL ?>views/admin/fraternal_benefits.php"
-            class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
-                class="fas fa-chart-line me-2"></i>Fraternal Benifits</a>
-        <a href="<?= BASE_URL ?>views/admin/forms.php" class="list-group-item bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
+        <!-- Fraternal Benefits Dropdown -->
+        <div class="dropdown">
+            <a href="#"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4 dropdown-toggle"
+                id="fraternalBenefitsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-chart-line me-2"></i>Fraternal Benefits
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="fraternalBenefitsDropdown">
+                <li><a class="dropdown-item" href="#">Savings Plans</a></li>
+                <li><a class="dropdown-item" href="#">Investment Plans</a></li>
+                <li><a class="dropdown-item" href="#">Retirement Plans</a></li>
+                <li><a class="dropdown-item" href="#">Educational Plans</a></li>
+                <li><a class="dropdown-item" href="#">Protection Plans</a></li>
+                <li><a class="dropdown-item" href="#">Term Plans</a></li>
+                <li><a class="dropdown-item" href="#">Council Mortuary Benefit Plan</a></li>
+            </ul>
+        </div>
+        <a href="<?= BASE_URL ?>views/admin/forms.php"
+            class="list-group-item bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-paperclip me-2"></i>Forms</a>
         <a href="<?= BASE_URL ?>views/admin/listofusers.php"
             class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4">
             <i class="fas fa-user me-2"></i>Users
         </a>
-
         <a href="<?= BASE_URL ?>views/admin/meetings.php"
             class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-comment-dots me-2"></i>Meetings</a>
@@ -33,13 +47,15 @@
     </div>
 </div>
 
+
 <!-- /#sidebar-wrapper -->
 
 <div id="page-content-wrapper">
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h4 class="fs-4 m-0 fw-bolder" style="color:rgb(6, 3, 148);">Knights of Columbus Fraternal Association of the Philippines Inc.</h4>
+            <h4 class="fs-4 m-0 fw-bolder" style="color:rgb(6, 3, 148);">Knights of Columbus Fraternal Association of
+                the Philippines Inc.</h4>
         </div>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
