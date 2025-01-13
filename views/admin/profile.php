@@ -19,7 +19,7 @@
         <hr class="border border-primary border-3 opacity-75">
 
         <section style="background-color: #eee;">
-            <div class="container py-5">
+            <div class="container-fluid py-3">
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="card mb-4">
@@ -27,7 +27,7 @@
                                 <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="avatar"
                                     class="rounded-circle img-fluid" style="width: 150px;">
                                 <h5 class="my-3"><?php echo $user['firstname']; ?>
-                                <?php echo $user['lastname']; ?></h5>
+                                    <?php echo $user['lastname']; ?></h5>
                                 <!-- <p class="text-muted mb-1">Full Stack Developer</p>
                                 <p class="text-muted mb-4">Bay Area, San Francisco, CA</p> -->
                                 <div class="d-flex justify-content-center mb-2">
@@ -116,12 +116,10 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
-
-
-
     </div>
     <!-- /#page-content-wrapper -->
 
