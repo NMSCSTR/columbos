@@ -15,7 +15,7 @@
     <div class="table-responsive">
             <table id="example" class="table table-bordered  table-sm display responsive nowrap caption-top"
                 style="width:100%">
-                <caption><i class="fas fa-list"></i> List of users</caption>
+                <caption><i class="fas fa-list"></i> List of Plan</caption>
                 <hr class="border border-primary border-3 opacity-75">
                 <thead class="table-dark">
                     <tr>
@@ -30,17 +30,17 @@
                 </thead>
                 <tbody>
                     <?php
-                        $fetch_plan = mysqli_query($conn, "SELECT * FROM fraternal_benifits");
+                        $fetch_plan = mysqli_query($conn, "SELECT * FROM fraternal_benefits");
                         while ($plan = mysqli_fetch_assoc($fetch_plan)) { ?>
 
                     <tr>
                        
-                        <td><?php echo $plan['firstname'] ?></td>
-                        <td><?php echo $plan['lastname'] ?></td>
-                        <td><?php echo $plan['kcfapicode'] ?></td>
-                        <td><?php echo $plan['email'] ?></td>
-                        <td><?php echo $plan['phone_number'] ?> <span><i class="fas fa-message float-end text-primary"></i></span></td>
-                        <td><?php echo ucfirst($user['role']) ?></td>
+                        <td><?php echo $plan['type'] ?></td>
+                        <td><?php echo $plan['name'] ?></td>
+                        <td><?php echo $plan['about'] ?></td>
+                        <td><?php echo $plan['benefits'] ?></td>
+                        <td><?php echo $plan['contribution_period'] ?></td>
+                        <td><?php echo $plan['image'] ?></td>
 
                         <td>
                             <button onclick="deletePlan(<?php echo $plan['id']; ?>)" class="btn btn-danger btn-sm">
@@ -51,7 +51,7 @@
                     <?php } ?>
                 <tfoot>
                     <tr>
-                    <th>TYPE</th>
+                        <th>TYPE</th>
                         <th>NAME</th>
                         <th>ABOUT</th>
                         <th>BENEFITS</th>
