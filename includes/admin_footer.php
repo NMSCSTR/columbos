@@ -51,8 +51,8 @@ $(document).ready(function() {
     $('#example').DataTable({
         responsive: true,
         ordering: true,
-        scrollY: '200px',
-        scrollCollapse: true,
+        // scrollY: '200px',
+        // scrollCollapse: true,
         paging: true,
         fixedHeader: true,
         stateSave: true,

@@ -30,7 +30,8 @@
                         while ($user = mysqli_fetch_assoc($fetch_users)) { ?>
 
                     <tr>
-                        <td><span  style="width: 120px; height: 40px; display: flex; justify-content: center; align-items: center; text-transform: uppercase;"
+                        <td><span
+                                style="width: 120px; height: 40px; display: flex; justify-content: center; align-items: center; text-transform: uppercase;"
                                 class="badge <?php echo $user['status'] == 'approved' ? 'text-bg-success shadow p-2' : ($user['status'] == 'pending' ? 'text-bg-warning shadow p-2' : ''); ?>">
                                 <?php echo strtoupper($user['status']); ?>
                             </span>
@@ -39,16 +40,25 @@
                         <td><?php echo $user['lastname'] ?></td>
                         <td><?php echo $user['kcfapicode'] ?></td>
                         <td><?php echo $user['email'] ?></td>
-                        <td><?php echo $user['phone_number'] ?> <span><i class="fas fa-message float-end text-primary"></i></span></td>
+                        <td><?php echo $user['phone_number'] ?> <span><i
+                                    class="fas fa-message float-end text-primary"></i></span></td>
                         <td><?php echo ucfirst($user['role']) ?></td>
 
-                        <td>
-                            <button onclick="deleteUser(<?php echo $user['id']; ?>)" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash-alt"></i> Delete
-                            </button>
-                            <button onclick="approvedUser(<?php echo $user['id']; ?>)" class="btn btn-success btn-sm">
-                                <i class="fas fa-check"></i> Approve
-                            </button>
+                        <td class="text-end">
+                            <div class="drop-start">
+                                <i class="fa-solid fa-ellipsis-vertical fa-2xl mt-3" data-bs-toggle="dropdown"
+                                    aria-expanded="false"></i>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#"
+                                            onclick="approvedUser(<?php echo $user['id']; ?>)"
+                                            class="btn btn-success btn-sm"> <i class="fas fa-check"></i> Approve
+                                            User</a></li>
+                                    <li><a class="dropdown-item" href="#"
+                                            onclick="deleteUser(<?php echo $user['id']; ?>)"
+                                            class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </td>
                     </tr>
                     <?php } ?>

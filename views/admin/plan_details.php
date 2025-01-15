@@ -135,15 +135,22 @@ if ($id > 0) {
                     <div class="d-flex justify-content-between">
                         <h3 class="card-title fs-1"><?php echo $details['name']; ?></h3>
                         <div class="dropstart">
-                            <i class="fa-solid fa-ellipsis-vertical fa-2xl mt-3" data-bs-toggle="dropdown"
+                            <i class="fa-solid fa-ellipsis-vertical fa-2xl" data-bs-toggle="dropdown"
                                 aria-expanded="false"></i>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="#"
-                                        onClick="deletePlan(<?php echo $details['id']; ?>)">Delete</a></li>
-                                <li><a class="dropdown-item" href="#"
+                                        onClick="deletePlan(<?php echo $details['id']; ?>)">
+                                        <i class="fas fa-trash-alt"></i> Delete
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#"
                                         onclick="loadPlanDetails(<?php echo $details['id']; ?>, '<?php echo $details['name']; ?>', '<?php echo $details['type']; ?>', '<?php echo $details['contribution_period']; ?>', '<?php echo addslashes($details['about']); ?>', '<?php echo addslashes($details['benefits']); ?>')"
                                         class="btn btn-primary flex-grow-1" data-bs-toggle="offcanvas"
-                                        data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">Update</a></li>
+                                        data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+                                        <i class="fas fa-edit"></i> Update
+                                    </a>
+                                </li>
                             </ul>
                         </div>
 
