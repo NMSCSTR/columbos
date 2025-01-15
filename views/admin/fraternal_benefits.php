@@ -7,81 +7,80 @@
 <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
     aria-labelledby="staticBackdropLabel" style="width: 100vw; height: 100vh; max-width: 100vw;">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="staticBackdropLabel">Create New Plan</h5>
+        <h5 class="offcanvas-title" id="staticBackdropLabel"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
         <div>
-            <div class="card">
-                <div class="container mt-5">
-                    <h2>Create New Plan</h2>
-                    <form action="upload.php" method="POST" enctype="multipart/form-data">
-                        <div class="row">
-                            <!-- TYPE -->
-                            <div class="col-md-6 mb-3">
-                                <div class="form-floating">
-                                    <select class="form-select" id="type" name="type" required>
-                                        <option value="Savings Plan">Savings Plan</option>
-                                        <option value="Investment Plan">Investment Plan</option>
-                                        <option value="Retirement Plan">Retirement Plan</option>
-                                        <option value="Educational Plan">Educational Plan</option>
-                                        <option value="Protection Plan">Protection Plan</option>
-                                        <option value="Term Plan">Term Plan</option>
-                                    </select>
-                                    <label for="type">Type</label>
-                                </div>
-                            </div>
-
-                            <!-- NAME -->
-                            <div class="col-md-6 mb-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Enter Name" required>
-                                    <label for="name">Name</label>
-                                </div>
-                            </div>
-
-                            <!-- ABOUT -->
-                            <div class="col-md-12 mb-3">
-                                <div class="form-floating">
-                                    <textarea class="form-control" id="about" name="about" placeholder="Enter About"
-                                        required></textarea>
-                                    <label for="about">About</label>
-                                </div>
-                            </div>
-
-                            <!-- BENEFITS -->
-                            <div class="col-md-12 mb-3">
-                                <div class="form-floating">
-                                    <textarea class="form-control" id="benefits" name="benefits"
-                                        placeholder="Enter Benefits" required></textarea>
-                                    <label for="benefits">Benefits</label>
-                                </div>
-                            </div>
-
-                            <!-- CONTRIBUTION PERIOD -->
-                            <div class="col-md-6 mb-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="contribution_period"
-                                        name="contribution_period" placeholder="Enter Contribution Period" required>
-                                    <label for="contribution_period">Contribution Period</label>
-                                </div>
-                            </div>
-
-                            <!-- IMAGE -->
-                            <div class="col-md-6 mb-3">
-                                <div class="form-floating">
-                                    <input type="file" class="form-control" id="image" name="image" required>
-                                    <label for="image">Image</label>
-                                </div>
-                            </div>
-
-                            <div class="col-12 mb-3">
-                                <button type="submit" class="btn btn-primary w-100">Submit</button>
+            <div class="container mt-5">
+                <h2>Create New Plan</h2>
+                <hr>
+                <form onSubmit="event.preventDefault(); addPlan();" action="" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <!-- TYPE -->
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <select class="form-select" id="type" name="type" required>
+                                    <option value="Savings Plan">Savings Plan</option>
+                                    <option value="Investment Plan">Investment Plan</option>
+                                    <option value="Retirement Plan">Retirement Plan</option>
+                                    <option value="Educational Plan">Educational Plan</option>
+                                    <option value="Protection Plan">Protection Plan</option>
+                                    <option value="Term Plan">Term Plan</option>
+                                </select>
+                                <label for="type">Type</label>
                             </div>
                         </div>
-                    </form>
-                </div>
+
+                        <!-- NAME -->
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name"
+                                    required>
+                                <label for="name">Name</label>
+                            </div>
+                        </div>
+
+                        <!-- ABOUT (TextArea) -->
+                        <div class="col-md-12 mb-3">
+                            <div class="form-floating">
+                                <textarea class="form-control" id="about" name="about" placeholder="Enter About"
+                                    required></textarea>
+                                <label for="about">About</label>
+                            </div>
+                        </div>
+
+                        <!-- BENEFITS (TextArea) -->
+                        <div class="col-md-12 mb-3">
+                            <div class="form-floating">
+                                <textarea class="form-control" id="benefits" name="benefits"
+                                    placeholder="Enter Benefits" required></textarea>
+                                <label for="benefits">Benefits</label>
+                            </div>
+                        </div>
+
+                        <!-- CONTRIBUTION PERIOD -->
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="contribution_period"
+                                    name="contribution_period" placeholder="Enter Contribution Period" required>
+                                <label for="contribution_period">Contribution Period</label>
+                            </div>
+                        </div>
+
+                        <!-- IMAGE -->
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <input type="file" class="form-control" id="image" name="image" required>
+                                <label for="image">Image</label>
+                            </div>
+                        </div>
+
+                        <div class="col-12 mb-3">
+                            <button type="submit" class="btn btn-primary w-100">Submit</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -149,6 +148,41 @@
 
 </div>
 <!-- /#page-content-wrapper -->
+
+<script>
+    const BASE_URL = "<?php echo BASE_URL; ?>";
+    function addPlan() {
+        const formData= new FormData();
+
+        formData.append('type', document.getElementById('type').value);
+        formData.append('name', document.getElementById('name').value);
+        formData.append('about', document.getElementById('about').value);
+        formData.append('benefits', document.getElementById('benefits').value);
+        formData.append('contribution_period', document.getElementById('contribution_period').value);
+        formData.append('image', document.getElementById('image').files[0]);
+
+        axios.post(`${BASE_URL}api/planApiController.php?action=addPlan`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'     
+            }
+        })
+        .then(response => {
+            if (response.data.success) {
+                Swal.fire('Success', response.data.message, 'success').then(() => {
+                    location.reload();
+                });    
+            } else {
+                console.log(response.data);
+                Swal.fire('Error', response.data.message, 'error');
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            Swal.fire('Error', 'An error occurred', 'error');
+    });
+    }
+
+</script>
 
 
 <?php include '../../includes/admin_footer.php'; ?>
