@@ -2,29 +2,68 @@
 <title>Plan Details</title>
 <?php include '../../includes/admin_sidebar.php'; ?>
 
-<!-- Page Content -->
+<?php
 
-<div class="container-fluid">
-    <div class="card p-3 shadow">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-4">
-                    <img src="<?php echo BASE_URL . 'uploads/' . $details['image'] ?>" alt="">
+$id = isset($_GET['id']) ? (int) $_GET['id'] : 0; 
+
+if ($id > 0) {
+    $sql = "SELECT * FROM `fraternal_benefits` WHERE `id` = $id";
+    $result = mysqli_query($conn, $sql);
+    
+    if (mysqli_num_rows($result) > 0) {
+        $details = mysqli_fetch_assoc($result);
+    } else {
+        echo "No record found.";
+        exit;
+    }
+} else {
+    echo "Invalid ID.";
+    exit;
+}
+?>
+
+<!-- Page Content -->
+<div class="container-fluid my-4">
+    <div class="card shadow-lg border-0">
+        <div class="row g-0">
+            <!-- Image Section -->
+            <div class="col-md-4">
+                <?php if (!empty($details['image'])): ?>
+                <img src="<?php echo BASE_URL . 'uploads/' . $details['image']; ?>" alt="Plan Image"
+                    class="img-fluid rounded-start">
+                <?php else: ?>
+                <img src="path_to_default_image.jpg" alt="No Image Available" class="img-fluid rounded-start">
+                <?php endif; ?>
+            </div>
+            <!-- Details Section -->
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3 class="card-title"><?php echo $details['name']; ?></h3>
+                    <p class="card-text"><strong>Type:</strong> <?php echo $details['type']; ?></p>
+                    <p class="card-text"><strong>Contribution Period:</strong>
+                        <?php echo $details['contribution_period']; ?></p>
+                    <p class="card-text"><strong>About:</strong> <?php echo $details['about']; ?></p>
+                    <p class="card-text"><strong>Benefits:</strong> <?php echo $details['benefits']; ?></p>
+                    <button class="btn btn-danger" onClick="deletePlan(<?php echo $details['id']; ?>)">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <!-- /#page-content-wrapper -->
 
 <script>
-    const BASE_URL = "<?php echo BASE_URL; ?>";
-    function deletePlan(id) {
-        axios.delete(`${BASE_URL}api/planApiController.php?id=${id}`)
-        .then(() => {
+const BASE_URL = "<?php echo BASE_URL; ?>";
+
+function deletePlan(id) {
+    axios.delete(`${BASE_URL}api/planApiController.php?id=${id}`)
+        .then(response => { 
             if (response.data.success) {
                 Swal.fire('Success', response.data.message, 'success').then(() => {
-                    location.reload();
+                    window.location.href = 'fraternal_benefits.php';
                 });
             } else {
                 console.log(response.data);
@@ -35,7 +74,7 @@
             console.log(error);
             Swal.fire('Error', 'An error occurred', 'error');
         });
-    }
+}
 </script>
 
 

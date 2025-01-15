@@ -67,7 +67,7 @@ if ($method === 'POST') {
         $result = mysqli_query($conn, $sql);
         if (mysqli_num_rows($result) > 0) {
             $plan = mysqli_fetch_assoc($result);
-            $image = $plan['image'];
+            $image = BASE_URL . $plan['image'];
             if (file_exists($image)) {
                 unlink($image);
             }
@@ -85,7 +85,7 @@ if ($method === 'POST') {
         $response['message'] = 'Invalid plan ID';
     }
 } elseif ($method === 'PUT') {
-    
+
 }
 
 
