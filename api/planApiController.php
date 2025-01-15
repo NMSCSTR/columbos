@@ -108,19 +108,6 @@ if ($method === 'POST') {
     } else {
         $response['message'] = 'Invalid plan ID';
     }
-} elseif ($method === 'GET') {
-    $id = isset($_GET['id']) ? mysqli_real_escape_string($conn, $_GET['id']) : '';
-    if (!empty($id)) {
-        $sql = "SELECT * FROM fraternal_benefits WHERE id = '$id'";
-        $result = mysqli_query($conn, $sql);
-        if (mysqli_num_rows($result) > 0) {
-            $response['success'] = true;
-            $response['data'] = mysqli_fetch_assoc($result);
-        } else {
-            $response['message'] = 'Plan not found';
-        }
-    } else {
-        $sql = "SELECT * FROM fraternal_benefits";
 }
 
 

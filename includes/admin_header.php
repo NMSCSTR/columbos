@@ -155,6 +155,21 @@ $count_members = mysqli_num_rows($count_members);
         border: none;
     }
 
+    /* plandetails */
+
+    .card-title {
+        color: #333;
+        font-weight: bold;
+    }
+
+    .card-text {
+        color: #555;
+        line-height: 1.5;
+    }
+
+
+    /* plandetails */
+
     @media (min-width: 768px) {
         #sidebar-wrapper {
             margin-left: 0;
