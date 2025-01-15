@@ -142,31 +142,35 @@
                 </tr>
             </thead>
             <tbody>
-            <?php
+                <?php
                 $fetch_councils = mysqli_query($conn, "SELECT * FROM council");
                 while ($council = mysqli_fetch_assoc($fetch_councils)) {
                 $fetch_umid_result = mysqli_query($conn, "SELECT * FROM users WHERE role = 'unit-manager' AND id = '{$council['unit_manager_id']}'");
                 $fetch_fcid_result = mysqli_query($conn, "SELECT * FROM users WHERE role = 'fraternal-counselor' AND id = '{$council['fraternal_counselor_id']}'");
                 $umid = mysqli_fetch_assoc($fetch_umid_result);
                 $fcid = mysqli_fetch_assoc($fetch_fcid_result);
-                ?>
+            ?>
                 <tr>
                     <td><?php echo $council['council_number'] ?></td>
                     <td><?php echo $council['council_name'] ?></td>
-                    <td><?php echo isset($umid['firstname']) ? $fcid['firstname'] .' ' . $fcid['lastname'] : 'N/A'; ?></td>
-                    <td><?php echo isset($fcid['firstname']) ? $fcid['firstname'] .' ' . $fcid['lastname'] : 'N/A'; ?></td>
+                    <td><?php echo isset($umid['firstname']) ? $umid['firstname'] .' ' . $umid['lastname'] : 'N/A'; ?>
+                    </td>
+                    <td><?php echo isset($fcid['firstname']) ? $fcid['firstname'] .' ' . $fcid['lastname'] : 'N/A'; ?>
+                    </td>
                     <td><?php echo $council['date_established'] ?></td>
                     <td>
-                        <button onclick="deleteCouncil(<?php echo $council['council_id']; ?>)" class="btn btn-danger btn-sm">
+                        <button onclick="deleteCouncil(<?php echo $council['council_id']; ?>)"
+                            class="btn btn-danger btn-sm">
                             <i class="fas fa-trash-alt"></i> Delete
                         </button>
-                        <button onclick="loadCouncilData(<?php echo $council['council_id']; ?>, '<?php echo $council['council_number']; ?>', '<?php echo $council['council_name']; ?>', '<?php echo $council['unit_manager_id']; ?>', '<?php echo $council['fraternal_counselor_id']; ?>', '<?php echo $council['date_established']; ?>')" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateCouncilModal">
+                        <button
+                            onclick="loadCouncilData(<?php echo $council['council_id']; ?>, '<?php echo $council['council_number']; ?>', '<?php echo $council['council_name']; ?>', '<?php echo $council['unit_manager_id']; ?>', '<?php echo $council['fraternal_counselor_id']; ?>', '<?php echo $council['date_established']; ?>')"
+                            class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateCouncilModal">
                             <i class="fas fa-edit"></i> Update
                         </button>
                     </td>
                 </tr>
                 <?php } ?>
-
             <tfoot>
                 <tr>
                     <th>COUNCIL NUMBER</th>
@@ -180,6 +184,7 @@
             </tbody>
         </table>
     </div>
+    <!-- Libre lang ang maging mabuting tao pero wala din namang bayad ang pagiging masama -->
 
 </div>
 <!-- /#page-content-wrapper -->
