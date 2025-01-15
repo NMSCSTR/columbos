@@ -75,6 +75,40 @@ function deletePlan(id) {
             Swal.fire('Error', 'An error occurred', 'error');
         });
 }
+function updatePlan() {
+    const BASE_URL = "<?php echo BASE_URL; ?>";
+    const formData = new FormData();
+
+    // Collect data from the form
+    formData.append('id', document.getElementById('id').value);
+    formData.append('type', document.getElementById('type').value);
+    formData.append('name', document.getElementById('name').value);
+    formData.append('about', document.getElementById('about').value);
+    formData.append('benefits', document.getElementById('benefits').value);
+    formData.append('contribution_period', document.getElementById('contribution_period').value);
+    formData.append('image', document.getElementById('image').files[0]);
+
+    // Send request using axios
+    axios.put(`${BASE_URL}api/planApiController.php`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data' // Correct header for FormData
+            }
+        })
+        .then(response => {
+            if (response.data.success) {
+                Swal.fire('Success', response.data.message, 'success').then(() => {
+                    window.location.href = 'fraternal_benefits.php';
+                });
+            } else {
+                console.log(response.data);
+                Swal.fire('Error', response.data.message, 'error');
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            Swal.fire('Error', 'An error occurred', 'error');
+        });
+}
 </script>
 
 

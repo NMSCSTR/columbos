@@ -85,7 +85,42 @@ if ($method === 'POST') {
         $response['message'] = 'Invalid plan ID';
     }
 } elseif ($method === 'PUT') {
-
+    $id = isset($_GET['id']) ? mysqli_real_escape_string($conn, $_GET['id']) : '';
+    if (!empty($id)) {
+        $data = json_decode(file_get_contents('php://input'), true);
+        $type = isset($data['type']) ? mysqli_real_escape_string($conn, $data['type']) : '';
+        $name = isset($data['name']) ? mysqli_real_escape_string($conn, $data['name']) : '';
+        $about = isset($data['about']) ? mysqli_real_escape_string($conn, $data['about']) : '';
+        $benefits = isset($data['benefits']) ? mysqli_real_escape_string($conn, $data['benefits']) : '';
+        $contribution_period = isset($data['contribution_period']) ? mysqli_real_escape_string($conn, $data['contribution_period']) : '';
+        
+        if (empty($type) || empty($name) || empty($about) || empty($benefits) || empty($contribution_period)) {
+            $response['message'] = 'All fields are required.';
+        } else {
+            $sql = "UPDATE fraternal_benefits SET type = '$type', name = '$name', about = '$about', benefits = '$benefits', contribution_period = '$contribution_period' WHERE id = '$id'";
+            if (mysqli_query($conn, $sql)) {
+                $response['success'] = true;
+                $response['message'] = 'Plan updated successfully';
+            } else {
+                $response['message'] = 'Plan failed to update: ' . mysqli_error($conn);
+            }
+        }
+    } else {
+        $response['message'] = 'Invalid plan ID';
+    }
+} elseif ($method === 'GET') {
+    $id = isset($_GET['id']) ? mysqli_real_escape_string($conn, $_GET['id']) : '';
+    if (!empty($id)) {
+        $sql = "SELECT * FROM fraternal_benefits WHERE id = '$id'";
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) > 0) {
+            $response['success'] = true;
+            $response['data'] = mysqli_fetch_assoc($result);
+        } else {
+            $response['message'] = 'Plan not found';
+        }
+    } else {
+        $sql = "SELECT * FROM fraternal_benefits";
 }
 
 
