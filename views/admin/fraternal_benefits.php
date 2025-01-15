@@ -117,8 +117,8 @@
                         <td><?php echo $plan['type'] ?></td>
                         <td><?php echo $plan['name'] ?></td>
                         <td><?php echo $plan['contribution_period'] ?></td>
-                        <td>
-                            <a class="btn btn-success btn-sm" href=""><i class="fas fa-info-circle"></i> More Details</a>
+                        <td class="text-center">
+                            <a class="btn btn-success btn-sm" onClick = "redirectToPlanDetails(<?php echo $plan['id']?>)"><i class="fas fa-info-circle"></i> More Details</a>
                         </td>
                     </tr>
                     <?php } ?>
@@ -138,6 +138,11 @@
 </div>
 <!-- /#page-content-wrapper -->
 
+<script>
+    function redirectToPlanDetails(id) {
+        window.location.href = `plan_details.php?id=${id}`;
+    }
+</script>
 <script>
 function addPlan() {
     const BASE_URL = "<?php echo BASE_URL; ?>";

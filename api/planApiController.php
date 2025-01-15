@@ -4,8 +4,9 @@ include '../connection/db.php';
 header("Content-Type: application/json");
 
 $response = ['success' => false, 'message' => 'Invalid Request'];
+$method = $_SERVER['REQUEST_METHOD'];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($method === 'POST') {
     $action = isset($_GET['action']) ? $_GET['action'] : '';
     
     // Check if action is 'addPlan'
@@ -56,10 +57,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $response['message'] = 'No image file or invalid image upload';
         }
     }
+
+    
+    
+} elseif ($method === 'DELETE') {
+    $id = isset($_GET['id']) ? mysqli_real_escape_string($conn, $_GET['id']) : '';
+    if (!empty($id)) {
+        $sql = "SELECT * FROM fraternal_benefits WHERE id = '$id'";
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) > 0) {
+            $plan = mysqli_fetch_assoc($result);
+            $image = $plan['image'];
+            if (file_exists($image)) {
+                unlink($image);
+            }
+            $sql = "DELETE FROM fraternal_benefits WHERE id = '$id'";
+            if (mysqli_query($conn, $sql)) {
+                $response['success'] = true;
+                $response['message'] = 'Plan deleted successfully';
+            } else {
+                $response['message'] = 'Plan failed to delete: ' . mysqli_error($conn);
+            }
+        } else {
+            $response['message'] = 'Plan not found';
+        }
+    } else {
+        $response['message'] = 'Invalid plan ID';
+    }
+} elseif ($method === 'PUT') {
+    
 }
+
 
 mysqli_close($conn);
 
-// Send JSON response
+
 echo json_encode($response);
 ?>
