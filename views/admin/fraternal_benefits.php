@@ -15,7 +15,8 @@
             <div class="container mt-5">
                 <h2>Create New Plan</h2>
                 <hr>
-                <form onSubmit="event.preventDefault(); addPlan();" action="" method="POST" enctype="multipart/form-data">
+                <form onSubmit="event.preventDefault(); addPlan();" action="" method="POST"
+                    enctype="multipart/form-data">
                     <div class="row">
                         <!-- TYPE -->
                         <div class="col-md-6 mb-3">
@@ -44,7 +45,7 @@
                         <!-- ABOUT (TextArea) -->
                         <div class="col-md-12 mb-3">
                             <div class="form-floating">
-                                <textarea class="form-control" id="about" name="about" placeholder="Enter About"
+                                <textarea class="form-control" id="about" name="about" placeholder="Enter About" rows="10" cols="50"
                                     required></textarea>
                                 <label for="about">About</label>
                             </div>
@@ -53,7 +54,7 @@
                         <!-- BENEFITS (TextArea) -->
                         <div class="col-md-12 mb-3">
                             <div class="form-floating">
-                                <textarea class="form-control" id="benefits" name="benefits"
+                                <textarea class="form-control" id="benefits" name="benefits" rows="4" cols="50"
                                     placeholder="Enter Benefits" required></textarea>
                                 <label for="benefits">Benefits</label>
                             </div>
@@ -96,7 +97,7 @@
     </div>
     <div class="card p-3 shadow">
         <div class="table-responsive">
-            <table id="example" class="table table-bordered  table-sm display responsive nowrap caption-top"
+            <table id="example" class="table table-bordered display responsive nowrap caption-top"
                 style="width:100%">
                 <caption><i class="fas fa-list"></i> List of Plan</caption>
                 <hr class="border border-primary border-3 opacity-75">
@@ -104,10 +105,7 @@
                     <tr>
                         <th>TYPE</th>
                         <th>NAME</th>
-                        <th>ABOUT</th>
-                        <th>BENEFITS</th>
                         <th>CONTRIBUTION PERIOD</th>
-                        <th>IMAGE</th>
                         <th>ACTIONS</th>
                     </tr>
                 </thead>
@@ -118,15 +116,9 @@
                     <tr>
                         <td><?php echo $plan['type'] ?></td>
                         <td><?php echo $plan['name'] ?></td>
-                        <td><?php echo $plan['about'] ?></td>
-                        <td><?php echo $plan['benefits'] ?></td>
                         <td><?php echo $plan['contribution_period'] ?></td>
-                        <td><?php echo $plan['image'] ?></td>
-
                         <td>
-                            <button onclick="deletePlan(<?php echo $plan['id']; ?>)" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash-alt"></i> Delete
-                            </button>
+                            <a class="btn btn-success btn-sm" href=""><i class="fas fa-info-circle"></i> More Details</a>
                         </td>
                     </tr>
                     <?php } ?>
@@ -134,10 +126,7 @@
                     <tr>
                         <th>TYPE</th>
                         <th>NAME</th>
-                        <th>ABOUT</th>
-                        <th>BENEFITS</th>
                         <th>CONTRIBUTION PERIOD</th>
-                        <th>IMAGE</th>
                         <th>ACTIONS</th>
                     </tr>
                 </tfoot>
@@ -150,22 +139,22 @@
 <!-- /#page-content-wrapper -->
 
 <script>
-    function addPlan() {
-        const BASE_URL = "<?php echo BASE_URL; ?>";
-        const formData = new FormData();
+function addPlan() {
+    const BASE_URL = "<?php echo BASE_URL; ?>";
+    const formData = new FormData();
 
-        // Collect data from the form
-        formData.append('type', document.getElementById('type').value);
-        formData.append('name', document.getElementById('name').value);
-        formData.append('about', document.getElementById('about').value);
-        formData.append('benefits', document.getElementById('benefits').value);
-        formData.append('contribution_period', document.getElementById('contribution_period').value);
-        formData.append('image', document.getElementById('image').files[0]);
+    // Collect data from the form
+    formData.append('type', document.getElementById('type').value);
+    formData.append('name', document.getElementById('name').value);
+    formData.append('about', document.getElementById('about').value);
+    formData.append('benefits', document.getElementById('benefits').value);
+    formData.append('contribution_period', document.getElementById('contribution_period').value);
+    formData.append('image', document.getElementById('image').files[0]);
 
-        // Send request using axios
-        axios.post(`${BASE_URL}api/planApiController.php?action=addPlan`, formData, {
+    // Send request using axios
+    axios.post(`${BASE_URL}api/planApiController.php?action=addPlan`, formData, {
             headers: {
-                'Content-Type': 'multipart/form-data'  // Correct header for FormData
+                'Content-Type': 'multipart/form-data' // Correct header for FormData
             }
         })
         .then(response => {
@@ -182,7 +171,7 @@
             console.log(error);
             Swal.fire('Error', 'An error occurred', 'error');
         });
-    }
+}
 </script>
 
 

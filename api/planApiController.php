@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $imageExtension = strtolower(pathinfo($imageName, PATHINFO_EXTENSION));
 
             // Set upload folder based on the type
-            $uploadDir = 'uploads/' . str_replace(' ', '_', $type); // Folder for specific plan type
+            $uploadDir = '../uploads/' . str_replace(' ', '_', $type); // Folder for specific plan type
             if (!file_exists($uploadDir)) {
                 mkdir($uploadDir, 0777, true); // Create the folder if it doesn't exist
             }
