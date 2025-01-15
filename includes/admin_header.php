@@ -63,11 +63,6 @@ $count_members = mysqli_num_rows($count_members);
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 
 
-    <!-- RowReorder Extension CSS -->
-
-    <!-- RowReorder Extension JS -->
-    <script type="text/javascript" charset="utf8"
-        src="https://cdn.datatables.net/rowreorder/1.3.0/js/dataTables.rowReorder.min.js"></script>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 

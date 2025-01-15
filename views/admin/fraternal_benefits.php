@@ -150,10 +150,11 @@
 <!-- /#page-content-wrapper -->
 
 <script>
-    const BASE_URL = "<?php echo BASE_URL; ?>";
     function addPlan() {
-        const formData= new FormData();
+        const BASE_URL = "<?php echo BASE_URL; ?>";
+        const formData = new FormData();
 
+        // Collect data from the form
         formData.append('type', document.getElementById('type').value);
         formData.append('name', document.getElementById('name').value);
         formData.append('about', document.getElementById('about').value);
@@ -161,16 +162,17 @@
         formData.append('contribution_period', document.getElementById('contribution_period').value);
         formData.append('image', document.getElementById('image').files[0]);
 
+        // Send request using axios
         axios.post(`${BASE_URL}api/planApiController.php?action=addPlan`, formData, {
             headers: {
-                'Content-Type': 'multipart/form-data'     
+                'Content-Type': 'multipart/form-data'  // Correct header for FormData
             }
         })
         .then(response => {
             if (response.data.success) {
                 Swal.fire('Success', response.data.message, 'success').then(() => {
                     location.reload();
-                });    
+                });
             } else {
                 console.log(response.data);
                 Swal.fire('Error', response.data.message, 'error');
@@ -179,10 +181,10 @@
         .catch(error => {
             console.log(error);
             Swal.fire('Error', 'An error occurred', 'error');
-    });
+        });
     }
-
 </script>
+
 
 
 <?php include '../../includes/admin_footer.php'; ?>

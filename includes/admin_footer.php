@@ -54,8 +54,6 @@ $(document).ready(function() {
         scrollY: '200px',
         scrollCollapse: true,
         paging: true,
-        rowReorder: { selector: 'td:not(:first-child)' },
-        
         fixedHeader: true,
         stateSave: true,
         searching: true,
