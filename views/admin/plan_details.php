@@ -1,4 +1,8 @@
-<?php include '../../includes/admin_header.php'; ?>
+<?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+include '../../includes/admin_header.php'; ?>
 <title>Plan Details</title>
 <?php include '../../includes/admin_sidebar.php'; ?>
 
@@ -23,12 +27,10 @@ if ($id > 0) {
 ?>
 
 
-
 <!-- Offcanvas Plan Update -->
 <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
     aria-labelledby="staticBackdropLabel" style="width: 100vw; height: 100vh; max-width: 100vw;">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="staticBackdropLabel"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
@@ -36,8 +38,7 @@ if ($id > 0) {
             <div class="container mt-5">
                 <h2>Update Plan</h2>
                 <hr>
-                <form onSubmit="event.preventDefault(); updatePlan();" action="" method="POST"
-                    enctype="multipart/form-data">
+                <form method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <!-- ID (Hidden) -->
                         <input type="hidden" id="id" name="id">
@@ -60,8 +61,7 @@ if ($id > 0) {
                         <!-- NAME -->
                         <div class="col-md-6 mb-3">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name"
-                                    required>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required>
                                 <label for="name">Name</label>
                             </div>
                         </div>
@@ -69,8 +69,7 @@ if ($id > 0) {
                         <!-- ABOUT (TextArea) -->
                         <div class="col-md-12 mb-3">
                             <div class="form-floating">
-                                <textarea class="form-control" id="about" name="about" placeholder="Enter About"
-                                    rows="10" cols="50" required></textarea>
+                                <textarea class="form-control" id="about" name="about" placeholder="Enter About" rows="10" cols="50" required></textarea>
                                 <label for="about">About</label>
                             </div>
                         </div>
@@ -78,8 +77,7 @@ if ($id > 0) {
                         <!-- BENEFITS (TextArea) -->
                         <div class="col-md-12 mb-3">
                             <div class="form-floating">
-                                <textarea class="form-control" id="benefits" name="benefits" rows="4" cols="50"
-                                    placeholder="Enter Benefits" required></textarea>
+                                <textarea class="form-control" id="benefits" name="benefits" rows="4" cols="50" placeholder="Enter Benefits" required></textarea>
                                 <label for="benefits">Benefits</label>
                             </div>
                         </div>
@@ -87,17 +85,8 @@ if ($id > 0) {
                         <!-- CONTRIBUTION PERIOD -->
                         <div class="col-md-6 mb-3">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="contribution_period"
-                                    name="contribution_period" placeholder="Enter Contribution Period" required>
+                                <input type="text" class="form-control" id="contribution_period" name="contribution_period" placeholder="Enter Contribution Period" required>
                                 <label for="contribution_period">Contribution Period</label>
-                            </div>
-                        </div>
-
-                        <!-- IMAGE -->
-                        <div class="col-md-6 mb-3">
-                            <div class="form-floating">
-                                <input type="file" class="form-control" id="image" name="image">
-                                <label for="image">Image</label>
                             </div>
                         </div>
 
@@ -106,13 +95,10 @@ if ($id > 0) {
                         </div>
                     </div>
                 </form>
-
-
             </div>
         </div>
     </div>
 </div>
-
 <!-- End Offcanvas Plan Update -->
 
 <!-- Page Content -->
@@ -136,7 +122,7 @@ if ($id > 0) {
                         <h3 class="card-title fs-1"><?php echo $details['name']; ?></h3>
                         <div class="dropstart">
                             <i class="fa-solid fa-ellipsis-vertical fa-2xl" data-bs-toggle="dropdown"
-                                aria-expanded="false"></i>
+                                aria-expanded="false" style="cursor: pointer;"></i>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="#"
                                         onClick="deletePlan(<?php echo $details['id']; ?>)">
@@ -144,17 +130,23 @@ if ($id > 0) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#"
-                                        onclick="loadPlanDetails(<?php echo $details['id']; ?>, '<?php echo $details['name']; ?>', '<?php echo $details['type']; ?>', '<?php echo $details['contribution_period']; ?>', '<?php echo addslashes($details['about']); ?>', '<?php echo addslashes($details['benefits']); ?>')"
-                                        class="btn btn-primary flex-grow-1" data-bs-toggle="offcanvas"
-                                        data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+                                    <!-- Update Plan Link -->
+                                    <a class="dropdown-item" href="#" onclick="loadPlanDetails(
+                                        '<?php echo $details['id']; ?>',
+                                        '<?php echo $details['name']; ?>',
+                                        '<?php echo $details['type']; ?>',
+                                        '<?php echo $details['contribution_period']; ?>',
+                                        '<?php echo $details['about']; ?>',
+                                        '<?php echo $details['benefits']; ?>'
+                                    )" class="btn btn-primary flex-grow-1" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
                                         <i class="fas fa-edit"></i> Update
                                     </a>
                                 </li>
+                                <!-- <li class="dropdown-item">
+                                    <i class="fas fa-camera"></i> Change photo
+                                </li> -->
                             </ul>
                         </div>
-
-
                     </div>
 
                     <p class="card-text fs-3 text-success"><strong><?php echo $details['type']; ?></strong></p>
@@ -176,6 +168,7 @@ if ($id > 0) {
 <!-- /#page-content-wrapper -->
 <script>
 function loadPlanDetails(id, name, type, contribution_period, about, benefits) {
+    console.log(id, name, type, contribution_period, about, benefits);
     document.getElementById('id').value = id;
     document.getElementById('name').value = name;
     document.getElementById('type').value = type;
@@ -184,9 +177,9 @@ function loadPlanDetails(id, name, type, contribution_period, about, benefits) {
     document.getElementById('benefits').value = benefits;
 }
 </script>
-
 <script>
 const BASE_URL = "<?php echo BASE_URL; ?>";
+console.log(BASE_URL);
 
 function deletePlan(id) {
     Swal.fire({
@@ -219,40 +212,7 @@ function deletePlan(id) {
 
 }
 
-function updatePlan() {
-    const BASE_URL = "<?php echo BASE_URL; ?>";
-    const formData = new FormData();
 
-    // Collect data from the form
-    formData.append('id', document.getElementById('id').value);
-    formData.append('type', document.getElementById('type').value);
-    formData.append('name', document.getElementById('name').value);
-    formData.append('about', document.getElementById('about').value);
-    formData.append('benefits', document.getElementById('benefits').value);
-    formData.append('contribution_period', document.getElementById('contribution_period').value);
-    formData.append('image', document.getElementById('image').files[0]);
-
-    // Send request using axios
-    axios.put(`${BASE_URL}api/planApiController.php`, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data' // Correct header for FormData
-            }
-        })
-        .then(response => {
-            if (response.data.success) {
-                Swal.fire('Success', response.data.message, 'success').then(() => {
-                    window.location.href = 'fraternal_benefits.php';
-                });
-            } else {
-                console.log(response.data);
-                Swal.fire('Error', response.data.message, 'error');
-            }
-        })
-        .catch(error => {
-            console.log(error);
-            Swal.fire('Error', 'An error occurred', 'error');
-        });
-}
 </script>
 
 

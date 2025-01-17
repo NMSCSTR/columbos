@@ -29,7 +29,6 @@ toggleButton.onclick = function() {
 </script>
 
 <script>
-var BASE_URL = '<?php echo BASE_URL; ?>';
 
 function logout() {
     Swal.fire({
