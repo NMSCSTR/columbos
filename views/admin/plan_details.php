@@ -38,7 +38,7 @@ if ($id > 0) {
             <div class="container mt-5">
                 <h2>Update Plan</h2>
                 <hr>
-                <form method="POST" enctype="multipart/form-data">
+                <form onSubmit="e.preventDefault(); updatePlan();" method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <!-- ID (Hidden) -->
                         <input type="hidden" id="id" name="id">
@@ -83,7 +83,7 @@ if ($id > 0) {
                         </div>
 
                         <!-- CONTRIBUTION PERIOD -->
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-12 mb-3">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="contribution_period" name="contribution_period" placeholder="Enter Contribution Period" required>
                                 <label for="contribution_period">Contribution Period</label>
@@ -141,7 +141,7 @@ if ($id > 0) {
                                     )" class="btn btn-primary flex-grow-1" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
                                         <i class="fas fa-edit"></i> Update
                                     </a> -->
-                                    <a class="dropdown-item" onclick="checkPlan('<?php echo $details['id']; ?>', '<?php echo $details['name']; ?>', '<?php echo $details['type']; ?>','<?php echo $details['contribution_period']; ?>','<?php echo $details['about']?>', '<?php echo $details['about']?>')"><i class="fas fa-edit"></i> Update</a>
+                                    <a class="dropdown-item" onclick="loadPlan('<?php echo $details['id']; ?>', '<?php echo $details['name']; ?>', '<?php echo $details['type']; ?>','<?php echo $details['contribution_period']; ?>','<?php echo $details['about']?>', '<?php echo $details['about']?>')" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop"><i class="fas fa-edit"></i> Update</a>
                                 </li>
                                 <!-- <li class="dropdown-item">
                                     <i class="fas fa-camera"></i> Change photo
@@ -168,38 +168,19 @@ if ($id > 0) {
 <!-- /#page-content-wrapper -->
 
 <script>
-    function checkPlan (id, name, type, contribution_period, about, benefits) {
+    const BASE_URL = "<?php echo BASE_URL; ?>";
+    function loadPlan (id, name, type, contribution_period, about, benefits) {
         console.log(id, name, type, contribution_period, about, benefits);
-        // document.getElementById('id').value = id;
-        // document.getElementById('name').value = name;
-        // document.getElementById('type').value = type;
-        // document.getElementById('contribution_period').value = contribution_period;
-        // document.getElementById('about').value = about;
-        // document.getElementById('benefits').value = benefits;
+        document.getElementById('id').value = id;
+        document.getElementById('name').value = name;
+        document.getElementById('type').value = type;
+        document.getElementById('contribution_period').value = contribution_period;
+        document.getElementById('about').value = about;
+        document.getElementById('benefits').value = benefits;
     }
-</script>
-<script>
-    function redirectToUpdatePlan(id) {
-        console.log(id);
-        // window.location.href = `edit_plan.php?id=${id}`;
-    }
-</script>
 
-<!-- <script>
-function loadPlanDetails(id, name, type, contribution_period, about, benefits) {
-    console.log(id, name, type, contribution_period, about, benefits);
-    document.getElementById('id').value = id;
-    document.getElementById('name').value = name;
-    document.getElementById('type').value = type;
-    document.getElementById('contribution_period').value = contribution_period;
-    document.getElementById('about').value = about;
-    document.getElementById('benefits').value = benefits;
-}
-</script> -->
-<script>
-const BASE_URL = "<?php echo BASE_URL; ?>";
+
 console.log(BASE_URL);
-
 function deletePlan(id) {
     Swal.fire({
         title: 'Are you sure?',
@@ -231,6 +212,69 @@ function deletePlan(id) {
 
 }
 
+function updatePlan() {
+    const formData = new FormData();
+    formData.append('id', document.getElementById('id').value);
+    formData.append('type', document.getElementById('type').value);
+    formData.append('name', document.getElementById('name').value);
+    formData.append('about', document.getElementById('about').value);
+    formData.append('benefits', document.getElementById('benefits').value);
+    formData.append('contribution_period', document.getElementById('contribution_period').value);
+    const imageInput = document.getElementById('image'); 
+    if (imageInput && imageInput.files[0]) {
+        formData.append('image', imageInput.files[0]);
+    }
+
+    axios.put(`${BASE_URL}api/planApiController.php?id=${formData.get('id')}`, formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    })
+        .then(response => {
+            if (response.data.success) {
+                Swal.fire('Success', response.data.message, 'success').then(() => {
+                    location.reload();
+                });
+            } else {
+                Swal.fire('Error', response.data.message, 'error');
+            }
+        })
+        .catch(error => {
+            Swal.fire('Error', error.response?.data?.message || 'An error occurred', 'error');
+        });
+}
+
+// function updatePlan() {
+//     const formData = new FormData();
+//     formData.append('id', document.getElementById('id').value);
+//     formData.append('type', document.getElementById('type').value);
+//     formData.append('name', document.getElementById('name').value);
+//     formData.append('about', document.getElementById('about').value);
+//     formData.append('benefits', document.getElementById('benefits').value);
+//     formData.append('contribution_period', document.getElementById('contribution_period').value);
+
+
+
+//     axios.put(`${BASE_URL}api/planApiController.php?id=${document.getElementById('id').value}`, formData, {
+//             headers: {
+//                 'Content-Type': 'multipart/form-data'
+//             }
+//         })
+//         .then(response => {
+//             if (response.data.success) {
+//                 Swal.fire('Success', response.data.message, 'success').then(() => {
+//                     window.location.href = 'fraternal_benefits.php';
+//                 });
+//             } else {
+//                 console.log(response.data);
+//                 Swal.fire('Error', response.data.message, 'error');
+//             }
+//         })
+//         .catch(error => {
+//             console.log(error);
+//             Swal.fire('Error', 'An error occurred', 'error');
+//         });
+// }
 
 </script>
 
