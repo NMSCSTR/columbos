@@ -190,6 +190,8 @@
 
 </div>
 <!-- /#page-content-wrapper -->
+
+
 <script>
 flatpickr("#date_established", {
     enableTime: true,

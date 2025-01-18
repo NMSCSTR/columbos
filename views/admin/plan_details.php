@@ -131,7 +131,7 @@ if ($id > 0) {
                                 </li>
                                 <li>
                                     <!-- Update Plan Link -->
-                                    <a class="dropdown-item" href="#" onclick="loadPlanDetails(
+                                    <!-- <a class="dropdown-item" href="#" onclick="loadPlanDetails(
                                         '<?php echo $details['id']; ?>',
                                         '<?php echo $details['name']; ?>',
                                         '<?php echo $details['type']; ?>',
@@ -140,7 +140,8 @@ if ($id > 0) {
                                         '<?php echo $details['benefits']; ?>'
                                     )" class="btn btn-primary flex-grow-1" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
                                         <i class="fas fa-edit"></i> Update
-                                    </a>
+                                    </a> -->
+                                    <a class="dropdown-item" onclick="checkPlan('<?php echo $details['id']; ?>', '<?php echo $details['name']; ?>', '<?php echo $details['type']; ?>','<?php echo $details['contribution_period']; ?>','<?php echo $details['about']?>', '<?php echo $details['about']?>')"><i class="fas fa-edit"></i> Update</a>
                                 </li>
                                 <!-- <li class="dropdown-item">
                                     <i class="fas fa-camera"></i> Change photo
@@ -164,9 +165,27 @@ if ($id > 0) {
 
 
 
-
 <!-- /#page-content-wrapper -->
+
 <script>
+    function checkPlan (id, name, type, contribution_period, about, benefits) {
+        console.log(id, name, type, contribution_period, about, benefits);
+        // document.getElementById('id').value = id;
+        // document.getElementById('name').value = name;
+        // document.getElementById('type').value = type;
+        // document.getElementById('contribution_period').value = contribution_period;
+        // document.getElementById('about').value = about;
+        // document.getElementById('benefits').value = benefits;
+    }
+</script>
+<script>
+    function redirectToUpdatePlan(id) {
+        console.log(id);
+        // window.location.href = `edit_plan.php?id=${id}`;
+    }
+</script>
+
+<!-- <script>
 function loadPlanDetails(id, name, type, contribution_period, about, benefits) {
     console.log(id, name, type, contribution_period, about, benefits);
     document.getElementById('id').value = id;
@@ -176,7 +195,7 @@ function loadPlanDetails(id, name, type, contribution_period, about, benefits) {
     document.getElementById('about').value = about;
     document.getElementById('benefits').value = benefits;
 }
-</script>
+</script> -->
 <script>
 const BASE_URL = "<?php echo BASE_URL; ?>";
 console.log(BASE_URL);
