@@ -149,13 +149,15 @@
                 $fetch_fcid_result = mysqli_query($conn, "SELECT * FROM users WHERE role = 'fraternal-counselor' AND id = '{$council['fraternal_counselor_id']}'");
                 $umid = mysqli_fetch_assoc($fetch_umid_result);
                 $fcid = mysqli_fetch_assoc($fetch_fcid_result);
+
+                $date = new DateTime($council['date_established']);
             ?>
                 <tr>
                     <td><?php echo $council['council_number'] ?></td>
                     <td><?php echo $council['council_name'] ?></td>
                     <td><?php echo isset($umid['firstname']) ? $umid['firstname'] .' ' . $umid['lastname'] : 'N/A'; ?></td>
                     <td><?php echo isset($fcid['firstname']) ? $fcid['firstname'] .' ' . $fcid['lastname'] : 'N/A'; ?></td>
-                    <td><?php echo $council['date_established'] ?></td>
+                    <td><?php echo $date->format('F d, Y H:i:s');?></td>
                     <td class="text-end">
                         <div class="drop-start">
                         <i class="fa-solid fa-ellipsis-vertical fa-2xl mt-3" data-bs-toggle="dropdown"

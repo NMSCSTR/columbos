@@ -68,13 +68,15 @@
                             </thead>
                             <tbody>
                                 <?php
-                                        $fetch_logs = mysqli_query($conn, "SELECT * FROM logs ORDER BY id DESC");
-                                        while ($log = mysqli_fetch_assoc($fetch_logs)) { ?>
+                                        // $fetch_logs = mysqli_query($conn, "SELECT * FROM logs ORDER BY id DESC");
+                                        // while ($log = mysqli_fetch_assoc($fetch_logs)) 
+                                { 
+                                ?>
                                 <tr>
-                                    <td><?php echo $log['user'] ?></td>
+                                    <!-- <td><?php echo $log['user'] ?></td>
                                     <td><?php echo $log['role'] ?></td>
                                     <td><?php echo $log['date'] ?></td>
-                                    <td><?php echo $log['time'] ?></td>
+                                    <td><?php echo $log['time'] ?></td> -->
                                 </tr>
                                 <?php } ?>
                             <tfoot>
