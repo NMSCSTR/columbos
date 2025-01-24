@@ -6,14 +6,14 @@ include '../../includes/header.php';
 <main class="mt-4">
     <div class="container-fluid min-vh-100 d-flex justify-content-center align-items-center">
         <div class="row w-100 justify-content-center">
-            <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 p-4 shadow rounded bg-white">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 p-4  rounded bg-white">
                 <form onSubmit="event.preventDefault(); registerUser();" method="POST" action="">
-                    <div class="text-center mb-4">
+                    <div class="mb-4">
                         <img class="mb-3 img-fluid" src="https://visitaiglesia.net/wp-content/uploads/2019/04/11.jpg"
                             alt="Logo" width="100" height="100">
                         <h1 class="h3">Register</h1>
                     </div>
-
+                    <hr>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control shadow" name="firstname" id="firstname"
                             placeholder="First Name" value="">
