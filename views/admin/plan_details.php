@@ -62,7 +62,8 @@ if ($id > 0) {
                         <!-- NAME -->
                         <div class="col-md-6 mb-3">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name"
+                                    required>
                                 <label for="name">Name</label>
                             </div>
                         </div>
@@ -70,7 +71,8 @@ if ($id > 0) {
                         <!-- ABOUT (TextArea) -->
                         <div class="col-md-12 mb-3">
                             <div class="form-floating">
-                                <textarea class="form-control" id="about" name="about" placeholder="Enter About" rows="10" cols="50" required></textarea>
+                                <textarea class="form-control" id="about" name="about" placeholder="Enter About"
+                                    rows="10" cols="50" required></textarea>
                                 <label for="about">About</label>
                             </div>
                         </div>
@@ -78,7 +80,8 @@ if ($id > 0) {
                         <!-- BENEFITS (TextArea) -->
                         <div class="col-md-12 mb-3">
                             <div class="form-floating">
-                                <textarea class="form-control" id="benefits" name="benefits" rows="4" cols="50" placeholder="Enter Benefits" required></textarea>
+                                <textarea class="form-control" id="benefits" name="benefits" rows="4" cols="50"
+                                    placeholder="Enter Benefits" required></textarea>
                                 <label for="benefits">Benefits</label>
                             </div>
                         </div>
@@ -86,7 +89,8 @@ if ($id > 0) {
                         <!-- CONTRIBUTION PERIOD -->
                         <div class="col-md-12 mb-3">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="contribution_period" name="contribution_period" placeholder="Enter Contribution Period" required>
+                                <input type="text" class="form-control" id="contribution_period"
+                                    name="contribution_period" placeholder="Enter Contribution Period" required>
                                 <label for="contribution_period">Contribution Period</label>
                             </div>
                         </div>
@@ -131,7 +135,10 @@ if ($id > 0) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" onclick="loadPlan('<?php echo $details['id']; ?>', '<?php echo $details['name']; ?>', '<?php echo $details['type']; ?>','<?php echo $details['contribution_period']; ?>','<?php echo $details['about']?>', '<?php echo $details['about']?>')" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop"><i class="fas fa-edit"></i> Update</a>
+                                    <a class="dropdown-item"
+                                        onclick="loadPlan('<?php echo $details['id']; ?>', '<?php echo $details['name']; ?>', '<?php echo $details['type']; ?>','<?php echo $details['contribution_period']; ?>','<?php echo $details['about']?>', '<?php echo $details['about']?>')"
+                                        data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
+                                        aria-controls="staticBackdrop"><i class="fas fa-edit"></i> Update</a>
                                 </li>
                                 <li class="dropdown-item">
                                     <i class="fas fa-camera"></i> Change photo
@@ -158,19 +165,21 @@ if ($id > 0) {
 <!-- /#page-content-wrapper -->
 
 <script>
-    const BASE_URL = "<?php echo BASE_URL; ?>";
-    function loadPlan (id, name, type, contribution_period, about, benefits) {
-        // console.log(id, name, type, contribution_period, about, benefits);
-        document.getElementById('id').value = id;
-        document.getElementById('name').value = name;
-        document.getElementById('type').value = type;
-        document.getElementById('contribution_period').value = contribution_period;
-        document.getElementById('about').value = about;
-        document.getElementById('benefits').value = benefits;
-    }
+const BASE_URL = "<?php echo BASE_URL; ?>";
+
+function loadPlan(id, name, type, contribution_period, about, benefits) {
+    // console.log(id, name, type, contribution_period, about, benefits);
+    document.getElementById('id').value = id;
+    document.getElementById('name').value = name;
+    document.getElementById('type').value = type;
+    document.getElementById('contribution_period').value = contribution_period;
+    document.getElementById('about').value = about;
+    document.getElementById('benefits').value = benefits;
+}
 
 
 console.log(BASE_URL);
+
 function deletePlan(id) {
     Swal.fire({
         title: 'Are you sure?',
@@ -213,10 +222,10 @@ function updatePlan(event) {
     };
 
     axios.put(`${BASE_URL}api/planApiController.php?id=${id}`, data, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
         .then(response => {
             if (response.data.success) {
                 Swal.fire('Success', response.data.message, 'success').then(() => {
@@ -260,7 +269,6 @@ function updatePlan(event) {
             Swal.fire('Error', 'An error occurred', 'error');
         });
 }
-
 </script>
 
 
