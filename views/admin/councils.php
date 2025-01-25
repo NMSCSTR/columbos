@@ -129,7 +129,7 @@
         </button>
     </div>
     <div class="card p-3">
-        <table id="example" class="table table-sm display responsive nowrap caption-top" style="width:100%">
+        <table id="example" class="table table-sm display responsive nowrap shadow caption-top" style="width:100%">
             <caption><i class="fas fa-list"></i> List of councils</caption>
             <thead class="table-dark">
                 <tr>
@@ -149,8 +149,8 @@
                 $fetch_fcid_result = mysqli_query($conn, "SELECT * FROM users WHERE role = 'fraternal-counselor' AND id = '{$council['fraternal_counselor_id']}'");
                 $umid = mysqli_fetch_assoc($fetch_umid_result);
                 $fcid = mysqli_fetch_assoc($fetch_fcid_result);
-
                 $date = new DateTime($council['date_established']);
+
             ?>
                 <tr>
                     <td><?php echo $council['council_number'] ?></td>
@@ -188,8 +188,6 @@
             </tbody>
         </table>
     </div>
-    <!-- Libre lang ang maging mabuting tao pero wala din namang bayad ang pagiging masama -->
-
 </div>
 <!-- /#page-content-wrapper -->
 

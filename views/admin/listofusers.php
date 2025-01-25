@@ -31,8 +31,8 @@
 
                     <tr>
                         <td><span
-                                style="width: 120px; height: 40px; display: flex; justify-content: center; align-items: center; text-transform: uppercase;"
-                                class="badge <?php echo $user['status'] == 'approved' ? 'text-bg-success shadow p-2' : ($user['status'] == 'pending' ? 'text-bg-warning shadow p-2' : ''); ?>">
+                                style="width: 120px; display: flex; justify-content: center; align-items: center; text-transform: uppercase;"
+                                class="badge <?php echo $user['status'] == 'approved' ? 'text-success shadow p-2' : ($user['status'] == 'pending' ? 'text-warning shadow p-2' : ''); ?>">
                                 <?php echo strtoupper($user['status']); ?>
                             </span>
                         </td>
