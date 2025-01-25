@@ -79,7 +79,8 @@ if ($method === 'POST') {
         $response['message'] = 'Invalid plan ID.';
     }
 } elseif ($method === 'PUT') {
-    parse_str(file_get_contents('php://input'), $data);
+    $data = json_decode(file_get_contents('php://input'), true);
+
     $id = isset($_GET['id']) ? mysqli_real_escape_string($conn, $_GET['id']) : '';
     $type = isset($data['type']) ? mysqli_real_escape_string($conn, $data['type']) : '';
     $name = isset($data['name']) ? mysqli_real_escape_string($conn, $data['name']) : '';
@@ -99,6 +100,8 @@ if ($method === 'POST') {
     } else {
         $response['message'] = 'Invalid input or missing data.';
     }
+
+    echo json_encode($response);
 }
 
 mysqli_close($conn);

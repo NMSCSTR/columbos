@@ -35,10 +35,11 @@ if ($id > 0) {
     </div>
     <div class="offcanvas-body">
         <div>
-            <div class="container mt-5">
+            <div class="container mt-3">
                 <h2>Update Plan</h2>
                 <hr>
-                <form onSubmit="e.preventDefault(); updatePlan();" method="POST" enctype="multipart/form-data">
+                <form onSubmit="event.preventDefault(); updatePlan(event);" method="POST" enctype="multipart/form-data">
+
                     <div class="row">
                         <!-- ID (Hidden) -->
                         <input type="hidden" id="id" name="id">
@@ -102,7 +103,7 @@ if ($id > 0) {
 <!-- End Offcanvas Plan Update -->
 
 <!-- Page Content -->
-<div class="container-fluid my-4">
+<div class="container-fluid">
     <div class="card shadow-lg border-0 h-100">
         <div class="row g-0 h-100">
             <!-- Image Section -->
@@ -130,22 +131,11 @@ if ($id > 0) {
                                     </a>
                                 </li>
                                 <li>
-                                    <!-- Update Plan Link -->
-                                    <!-- <a class="dropdown-item" href="#" onclick="loadPlanDetails(
-                                        '<?php echo $details['id']; ?>',
-                                        '<?php echo $details['name']; ?>',
-                                        '<?php echo $details['type']; ?>',
-                                        '<?php echo $details['contribution_period']; ?>',
-                                        '<?php echo $details['about']; ?>',
-                                        '<?php echo $details['benefits']; ?>'
-                                    )" class="btn btn-primary flex-grow-1" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
-                                        <i class="fas fa-edit"></i> Update
-                                    </a> -->
                                     <a class="dropdown-item" onclick="loadPlan('<?php echo $details['id']; ?>', '<?php echo $details['name']; ?>', '<?php echo $details['type']; ?>','<?php echo $details['contribution_period']; ?>','<?php echo $details['about']?>', '<?php echo $details['about']?>')" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop"><i class="fas fa-edit"></i> Update</a>
                                 </li>
-                                <!-- <li class="dropdown-item">
+                                <li class="dropdown-item">
                                     <i class="fas fa-camera"></i> Change photo
-                                </li> -->
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -170,7 +160,7 @@ if ($id > 0) {
 <script>
     const BASE_URL = "<?php echo BASE_URL; ?>";
     function loadPlan (id, name, type, contribution_period, about, benefits) {
-        console.log(id, name, type, contribution_period, about, benefits);
+        // console.log(id, name, type, contribution_period, about, benefits);
         document.getElementById('id').value = id;
         document.getElementById('name').value = name;
         document.getElementById('type').value = type;
@@ -212,35 +202,62 @@ function deletePlan(id) {
 
 }
 
-function updatePlan() {
+function updatePlan(event) {
+    const id = document.getElementById('id').value;
+    const data = {
+        type: document.getElementById('type').value,
+        name: document.getElementById('name').value,
+        about: document.getElementById('about').value,
+        benefits: document.getElementById('benefits').value,
+        contribution_period: document.getElementById('contribution_period').value
+    };
+
+    axios.put(`${BASE_URL}api/planApiController.php?id=${id}`, data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => {
+            if (response.data.success) {
+                Swal.fire('Success', response.data.message, 'success').then(() => {
+                    window.location.reload();
+                });
+            } else {
+                console.log(response.data);
+                Swal.fire('Error', response.data.message, 'error');
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            Swal.fire('Error', 'An error occurred', 'error');
+        });
+}
+
+
+function updatePlan(event) {
     const formData = new FormData();
+
     formData.append('id', document.getElementById('id').value);
     formData.append('type', document.getElementById('type').value);
     formData.append('name', document.getElementById('name').value);
     formData.append('about', document.getElementById('about').value);
     formData.append('benefits', document.getElementById('benefits').value);
     formData.append('contribution_period', document.getElementById('contribution_period').value);
-    const imageInput = document.getElementById('image'); 
-    if (imageInput && imageInput.files[0]) {
-        formData.append('image', imageInput.files[0]);
-    }
 
-    axios.put(`${BASE_URL}api/planApiController.php?id=${formData.get('id')}`, formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
-    })
+    axios.put(`${BASE_URL}api/planApiController.php?id=${document.getElementById('id').value}`, formData)
         .then(response => {
             if (response.data.success) {
                 Swal.fire('Success', response.data.message, 'success').then(() => {
-                    location.reload();
+                    window.location.reload();
                 });
             } else {
+                console.log(response.data);
                 Swal.fire('Error', response.data.message, 'error');
             }
         })
         .catch(error => {
-            Swal.fire('Error', error.response?.data?.message || 'An error occurred', 'error');
+            console.log(error);
+            Swal.fire('Error', 'An error occurred', 'error');
         });
 }
 
