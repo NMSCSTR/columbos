@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<div class="bg-transparent shadow" id="sidebar-wrapper">
+<div class="bg-transparent shadow w-50" id="sidebar-wrapper">
     <img src="http://localhost/kcfapi_app/resources/images/kcf.png" class="img-fluid d-block mx-auto mt-3" width="50" alt=""
         srcset="">
 
@@ -27,6 +27,8 @@
         <a href="#"
             class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-map-marker-alt me-2"></i>Applications</a>
+        <a href="<?= BASE_URL ?>views/admin/profile.php"
+            class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-decoration-none py-3 px-4"><i class="fas fa-user-circle me-2"></i>Profile</a>
         <a href="<?= BASE_URL ?>api/logout.php"
             class="list-group-item list-group-item-action bg-transparent text-danger fw-bold text-decoration-none py-3 px-4"><i
                 class="fas fa-power-off me-2"></i>Logout</a>
