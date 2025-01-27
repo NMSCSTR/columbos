@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<div class="bg-transparent shadow w-50" id="sidebar-wrapper">
+<div class="bg-transparent shadow" id="sidebar-wrapper">
     <img src="http://localhost/kcfapi_app/resources/images/kcf.png" class="img-fluid d-block mx-auto mt-3" width="50" alt=""
         srcset="">
 
