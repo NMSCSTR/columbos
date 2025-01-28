@@ -211,36 +211,36 @@ function deletePlan(id) {
 
 }
 
-function updatePlan(event) {
-    const id = document.getElementById('id').value;
-    const data = {
-        type: document.getElementById('type').value,
-        name: document.getElementById('name').value,
-        about: document.getElementById('about').value,
-        benefits: document.getElementById('benefits').value,
-        contribution_period: document.getElementById('contribution_period').value
-    };
+// function updatePlan(event) {
+//     const id = document.getElementById('id').value;
+//     const data = {
+//         type: document.getElementById('type').value,
+//         name: document.getElementById('name').value,
+//         about: document.getElementById('about').value,
+//         benefits: document.getElementById('benefits').value,
+//         contribution_period: document.getElementById('contribution_period').value
+//     };
 
-    axios.put(`${BASE_URL}api/planApiController.php?id=${id}`, data, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => {
-            if (response.data.success) {
-                Swal.fire('Success', response.data.message, 'success').then(() => {
-                    window.location.reload();
-                });
-            } else {
-                console.log(response.data);
-                Swal.fire('Error', response.data.message, 'error');
-            }
-        })
-        .catch(error => {
-            console.log(error);
-            Swal.fire('Error', 'An error occurred', 'error');
-        });
-}
+//     axios.put(`${BASE_URL}api/planApiController.php?id=${id}`, data, {
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             }
+//         })
+//         .then(response => {
+//             if (response.data.success) {
+//                 Swal.fire('Success', response.data.message, 'success').then(() => {
+//                     window.location.reload();
+//                 });
+//             } else {
+//                 console.log(response.data);
+//                 Swal.fire('Error', response.data.message, 'error');
+//             }
+//         })
+//         .catch(error => {
+//             console.log(error);
+//             Swal.fire('Error', 'An error occurred', 'error');
+//         });
+// }
 
 
 function updatePlan(event) {
