@@ -117,3 +117,11 @@ mysqli_close($conn);
 
 echo json_encode($response);
 ?> -->
+
+
+        id: document.getElementById('id').value;
+        type: document.getElementById('type').value;
+        name: document.getElementById('name').value;
+        about: document.getElementById('about').value;
+        benefits: document.getElementById('benefits').value;
+        contribution_period: document.getElementById('contribution_period').value;

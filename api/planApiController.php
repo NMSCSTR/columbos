@@ -80,12 +80,12 @@ if ($method === 'POST') {
     }
 } elseif ($method === 'PUT') {
     parse_str(file_get_contents('php://input'), $data);
-    $id = isset($_GET['id']) ? mysqli_real_escape_string($conn, $_GET['id']) : '';
-    $type = isset($data['type']) ? mysqli_real_escape_string($conn, $data['type']) : '';
-    $name = isset($data['name']) ? mysqli_real_escape_string($conn, $data['name']) : '';
-    $about = isset($data['about']) ? mysqli_real_escape_string($conn, $data['about']) : '';
-    $benefits = isset($data['benefits']) ? mysqli_real_escape_string($conn, $data['benefits']) : '';
-    $contribution_period = isset($data['contribution_period']) ? mysqli_real_escape_string($conn, $data['contribution_period']) : '';
+    echo $id = isset($_GET['id']) ? mysqli_real_escape_string($conn, $_GET['id']) : '';
+    echo $type = isset($data['type']) ? mysqli_real_escape_string($conn, $data['type']) : '';
+    echo $name = isset($data['name']) ? mysqli_real_escape_string($conn, $data['name']) : '';
+    echo $about = isset($data['about']) ? mysqli_real_escape_string($conn, $data['about']) : '';
+    echo $benefits = isset($data['benefits']) ? mysqli_real_escape_string($conn, $data['benefits']) : '';
+    echo $contribution_period = isset($data['contribution_period']) ? mysqli_real_escape_string($conn, $data['contribution_period']) : '';
 
     if (!empty($id) && !empty($type) && !empty($name) && !empty($about) && !empty($benefits) && !empty($contribution_period)) {
         $sql = "UPDATE fraternal_benefits SET type = '$type', name = '$name', about = '$about', benefits = '$benefits', contribution_period = '$contribution_period' WHERE id = '$id'";
@@ -97,7 +97,7 @@ if ($method === 'POST') {
             $response['message'] = 'Plan failed to update.';
         }
     } else {
-        $response['message'] = 'Invalid input or missing data.';
+        $response['message'] = 'Invalid input or missing data.' . $type;
     }
 }
 
@@ -106,4 +106,3 @@ mysqli_close($conn);
 echo json_encode($response);
 ?>
 
-myHotspot

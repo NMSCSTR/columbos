@@ -244,8 +244,7 @@ function updatePlan(event) {
 
 
 function updatePlan(event) {
-    const formData = new FormData();
-
+    const formData = new FormData(); 
     formData.append('id', document.getElementById('id').value);
     formData.append('type', document.getElementById('type').value);
     formData.append('name', document.getElementById('name').value);
@@ -253,7 +252,15 @@ function updatePlan(event) {
     formData.append('benefits', document.getElementById('benefits').value);
     formData.append('contribution_period', document.getElementById('contribution_period').value);
 
-    axios.put(`${BASE_URL}api/planApiController.php?id=${document.getElementById('id').value}`, formData)
+    const data = {
+        type: document.getElementById('type').value,
+        name: document.getElementById('name').value,
+        about: document.getElementById('about').value,
+        benefits: document.getElementById('benefits').value,
+        contribution_period: document.getElementById('contribution_period').value
+    };
+
+    axios.put(`${BASE_URL}api/planApiController.php`, data)
         .then(response => {
             if (response.data.success) {
                 Swal.fire('Success', response.data.message, 'success').then(() => {
