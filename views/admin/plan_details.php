@@ -70,29 +70,23 @@ if ($id > 0) {
 
                         <!-- ABOUT (TextArea) -->
                         <div class="col-md-12 mb-3">
-                            <div class="form-floating">
-                                <textarea class="form-control" id="about" name="about" placeholder="Enter About"
-                                    rows="10" cols="50" required></textarea>
-                                <label for="about">About</label>
-                            </div>
+                            <label for="about">About</label>
+                            <textarea class="form-control" id="about" name="about" placeholder="Enter About" rows="10"
+                                cols="50" required></textarea>
                         </div>
 
                         <!-- BENEFITS (TextArea) -->
                         <div class="col-md-12 mb-3">
-                            <div class="form-floating">
-                                <textarea class="form-control" id="benefits" name="benefits" rows="4" cols="50"
-                                    placeholder="Enter Benefits" required></textarea>
-                                <label for="benefits">Benefits</label>
-                            </div>
+                            <label for="benefits">Benefits</label>
+                            <textarea class="form-control" id="benefits" name="benefits" rows="10" cols="50"
+                                placeholder="Enter Benefits" required></textarea>
                         </div>
 
                         <!-- CONTRIBUTION PERIOD -->
                         <div class="col-md-12 mb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="contribution_period"
-                                    name="contribution_period" placeholder="Enter Contribution Period" required>
-                                <label for="contribution_period">Contribution Period</label>
-                            </div>
+                            <label for="contribution_period">Contribution Period</label>
+                            <input type="text" class="form-control" id="contribution_period" name="contribution_period"
+                                placeholder="Enter Contribution Period" required>
                         </div>
 
                         <div class="col-12 mb-3">
@@ -136,7 +130,14 @@ if ($id > 0) {
                                 </li>
                                 <li>
                                     <a class="dropdown-item"
-                                        onclick="loadPlan('<?php echo $details['id']; ?>', '<?php echo $details['name']; ?>', '<?php echo $details['type']; ?>','<?php echo $details['contribution_period']; ?>','<?php echo $details['about']?>', '<?php echo $details['about']?>')"
+                                        onclick="
+                                        loadPlan('<?php echo $details['id']; ?>',
+                                         '<?php echo $details['type']; ?>', 
+                                         '<?php echo $details['name']; ?>',
+                                         '<?php echo $details['about']; ?>',
+                                         '<?php echo $details['benefits']; ?>', 
+                                         '<?php echo $details['contribution_period']; ?>'
+                                        )"
                                         data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
                                         aria-controls="staticBackdrop"><i class="fas fa-edit"></i> Update</a>
                                 </li>
@@ -160,21 +161,19 @@ if ($id > 0) {
 </div>
 
 
-
-
 <!-- /#page-content-wrapper -->
 
 <script>
 const BASE_URL = "<?php echo BASE_URL; ?>";
 
-function loadPlan(id, name, type, contribution_period, about, benefits) {
-    // console.log(id, name, type, contribution_period, about, benefits);
+function loadPlan(id, type, name, about, benefits, contribution_period) {
+    console.log(id, name, type, about, benefits, contribution_period);
     document.getElementById('id').value = id;
     document.getElementById('name').value = name;
     document.getElementById('type').value = type;
-    document.getElementById('contribution_period').value = contribution_period;
     document.getElementById('about').value = about;
     document.getElementById('benefits').value = benefits;
+    document.getElementById('contribution_period').value = contribution_period;
 }
 
 
@@ -211,53 +210,25 @@ function deletePlan(id) {
 
 }
 
-// function updatePlan(event) {
-//     const id = document.getElementById('id').value;
-//     const data = {
-//         type: document.getElementById('type').value,
-//         name: document.getElementById('name').value,
-//         about: document.getElementById('about').value,
-//         benefits: document.getElementById('benefits').value,
-//         contribution_period: document.getElementById('contribution_period').value
-//     };
-
-//     axios.put(`${BASE_URL}api/planApiController.php?id=${id}`, data, {
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             }
-//         })
-//         .then(response => {
-//             if (response.data.success) {
-//                 Swal.fire('Success', response.data.message, 'success').then(() => {
-//                     window.location.reload();
-//                 });
-//             } else {
-//                 console.log(response.data);
-//                 Swal.fire('Error', response.data.message, 'error');
-//             }
-//         })
-//         .catch(error => {
-//             console.log(error);
-//             Swal.fire('Error', 'An error occurred', 'error');
-//         });
-// }
 
 
 function updatePlan(event) {
-    const formData = new FormData(); 
-    formData.append('id', document.getElementById('id').value);
-    formData.append('type', document.getElementById('type').value);
-    formData.append('name', document.getElementById('name').value);
-    formData.append('about', document.getElementById('about').value);
-    formData.append('benefits', document.getElementById('benefits').value);
-    formData.append('contribution_period', document.getElementById('contribution_period').value);
+    const id = document.getElementById('id').value;
+    const type = document.getElementById('type').value;
+    const name = document.getElementById('name').value;
+    const about = document.getElementById('about').value;
+    const benefits = document.getElementById('benefits').value;
+    const contribution_period = document.getElementById('contribution_period').value
+
+    console.log(id, type, name, benefits, contribution_period);
 
     const data = {
-        type: document.getElementById('type').value,
-        name: document.getElementById('name').value,
-        about: document.getElementById('about').value,
-        benefits: document.getElementById('benefits').value,
-        contribution_period: document.getElementById('contribution_period').value
+        id: id,
+        type: type,
+        name: name,
+        about: about,
+        benefits: benefits,
+        contribution_period: contribution_period
     };
 
     axios.put(`${BASE_URL}api/planApiController.php`, data)

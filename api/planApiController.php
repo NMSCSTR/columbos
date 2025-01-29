@@ -81,40 +81,39 @@ if ($method === 'POST') {
 } elseif ($method === 'PUT') {
     parse_str(file_get_contents('php://input'), $data);
        // Ensure all required fields are present and not empty
-       $id = isset($data['id']) ? mysqli_real_escape_string($conn, $data['id']) : '';
-       $type = isset($data['type']) ? mysqli_real_escape_string($conn, $data['type']) : '';
-       $name = isset($data['name']) ? mysqli_real_escape_string($conn, $data['name']) : '';
-       $about = isset($data['about']) ? mysqli_real_escape_string($conn, $data['about']) : '';
-       $benefits = isset($data['benefits']) ? mysqli_real_escape_string($conn, $data['benefits']) : '';
-       $contribution_period = isset($data['contribution_period']) ? mysqli_real_escape_string($conn, $data['contribution_period']) : '';
-   
-       // Debugging: Log the received data for debugging purposes
-       error_log("Received data: " . print_r($data, true));
-   
-       // Check if all required fields are provided
-       if (!empty($id) && !empty($type) && !empty($name) && !empty($about) && !empty($benefits) && !empty($contribution_period)) {
-           // SQL query to update the plan
-           $sql = "UPDATE fraternal_benefits 
-                   SET type = '$type', name = '$name', about = '$about', benefits = '$benefits', contribution_period = '$contribution_period' 
-                   WHERE id = '$id'";
-   
-           // Execute the query
-           if (mysqli_query($conn, $sql)) {
-               $response['success'] = true;
-               $response['message'] = 'Plan updated successfully.';
-           } else {
-               // Log the MySQL error for debugging
-               error_log('MySQL Error: ' . mysqli_error($conn));
-               $response['message'] = 'Plan failed to update.';
-           }
-       } else {
-           // If any required fields are missing or empty
-           $response['message'] = 'Invalid input or missing data.';
-       }
-   }
+    $id = isset($data['id']) ? mysqli_real_escape_string($conn, $data['id']) : '';
+    $type = isset($data['type']) ? mysqli_real_escape_string($conn, $data['type']) : '';
+    $name = isset($data['name']) ? mysqli_real_escape_string($conn, $data['name']) : '';
+    $about = isset($data['about']) ? mysqli_real_escape_string($conn, $data['about']) : '';
+    $benefits = isset($data['benefits']) ? mysqli_real_escape_string($conn, $data['benefits']) : '';
+    $contribution_period = isset($data['contribution_period']) ? mysqli_real_escape_string($conn, $data['contribution_period']) : '';
+
+    // Debugging: Log the received data for debugging purposes
+    error_log("Received data: " . print_r($data, true));
+
+    // Check if all required fields are provided
+    if (!empty($id) && !empty($type) && !empty($name) && !empty($about) && !empty($benefits) && !empty($contribution_period)) {
+        // SQL query to update the plan
+        $sql = "UPDATE fraternal_benefits 
+                SET type = '$type', name = '$name', about = '$about', benefits = '$benefits', contribution_period = '$contribution_period' 
+                WHERE id = '$id'";
+
+        // Execute the query
+        if (mysqli_query($conn, $sql)) {
+            $response['success'] = true;
+            $response['message'] = 'Plan updated successfully.';
+        } else {
+            // Log the MySQL error for debugging
+            error_log('MySQL Error: ' . mysqli_error($conn));
+            $response['message'] = 'Plan failed to update.';
+        }
+    } else {
+        // If any required fields are missing or empty
+        $response['message'] = 'Invalid input or missing data.';
+    }
+}
 
 mysqli_close($conn);
 
 echo json_encode($response);
 ?>
-
