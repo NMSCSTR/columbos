@@ -155,22 +155,25 @@
                 <tr>
                     <td><?php echo $council['council_number'] ?></td>
                     <td><?php echo $council['council_name'] ?></td>
-                    <td><?php echo isset($umid['firstname']) ? $umid['firstname'] .' ' . $umid['lastname'] : 'N/A'; ?></td>
-                    <td><?php echo isset($fcid['firstname']) ? $fcid['firstname'] .' ' . $fcid['lastname'] : 'N/A'; ?></td>
+                    <td><?php echo isset($umid['firstname']) ? $umid['firstname'] .' ' . $umid['lastname'] : 'N/A'; ?>
+                    </td>
+                    <td><?php echo isset($fcid['firstname']) ? $fcid['firstname'] .' ' . $fcid['lastname'] : 'N/A'; ?>
+                    </td>
                     <td><?php echo $date->format('F d, Y H:i:s');?></td>
                     <td class="text-end">
                         <div class="drop-start">
-                        <i class="fa-solid fa-ellipsis-vertical fa-2xl mt-3" data-bs-toggle="dropdown"
-                                    aria-expanded="false"></i>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#"
-                                    onclick="loadCouncilData(<?php echo $council['council_id']; ?>, '<?php echo $council['council_number']; ?>', '<?php echo $council['council_name']; ?>', '<?php echo $council['unit_manager_id']; ?>', '<?php echo $council['fraternal_counselor_id']; ?>', '<?php echo $council['date_established']; ?>')"
-                                    data-bs-toggle="modal" data-bs-target="#updateCouncilModal"> <i class="fas fa-edit"></i> Update
-                                            User</a></li>
-                                    <li><a class="dropdown-item" href="#"
-                                    onclick="deleteCouncil(<?php echo $council['council_id']; ?>)"><i class="fas fa-trash-alt"></i> Delete</a>
-                                    </li>
-                                </ul>
+                            <i class="fa-solid fa-ellipsis-vertical fa-2xl mt-3" data-bs-toggle="dropdown"
+                                aria-expanded="false"></i>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#"
+                                        onclick="loadCouncilData(<?php echo $council['council_id']; ?>, '<?php echo $council['council_number']; ?>', '<?php echo $council['council_name']; ?>', '<?php echo $council['unit_manager_id']; ?>', '<?php echo $council['fraternal_counselor_id']; ?>', '<?php echo $council['date_established']; ?>')"
+                                        data-bs-toggle="modal" data-bs-target="#updateCouncilModal"> <i
+                                            class="fas fa-edit"></i> Update</a></li>
+                                <li><a class="dropdown-item" href="#"
+                                        onclick="deleteCouncil(<?php echo $council['council_id']; ?>)"><i
+                                            class="fas fa-trash-alt"></i> Delete</a>
+                                </li>
+                            </ul>
                         </div>
                     </td>
                 </tr>

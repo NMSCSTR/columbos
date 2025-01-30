@@ -47,7 +47,7 @@ if ($id > 0) {
                         <!-- TYPE -->
                         <div class="col-md-6 mb-3">
                             <div class="form-floating">
-                                <select class="form-select" id="type" name="type" required>
+                                <select class="form-select" id="update_type" name="type" required>
                                     <option value="Savings Plan">Savings Plan</option>
                                     <option value="Investment Plan">Investment Plan</option>
                                     <option value="Retirement Plan">Retirement Plan</option>
@@ -62,8 +62,8 @@ if ($id > 0) {
                         <!-- NAME -->
                         <div class="col-md-6 mb-3">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name"
-                                    required>
+                                <input type="text" class="form-control" id="update_name" name="name"
+                                    placeholder="Enter Name" required>
                                 <label for="name">Name</label>
                             </div>
                         </div>
@@ -71,22 +71,22 @@ if ($id > 0) {
                         <!-- ABOUT (TextArea) -->
                         <div class="col-md-12 mb-3">
                             <label for="about">About</label>
-                            <textarea class="form-control" id="about" name="about" placeholder="Enter About" rows="10"
-                                cols="50" required></textarea>
+                            <textarea class="form-control" id="update_about" name="about" placeholder="Enter About"
+                                rows="10" required></textarea>
                         </div>
 
                         <!-- BENEFITS (TextArea) -->
                         <div class="col-md-12 mb-3">
                             <label for="benefits">Benefits</label>
-                            <textarea class="form-control" id="benefits" name="benefits" rows="10" cols="50"
+                            <textarea class="form-control" id="update_benefits" name="benefits" rows="10"
                                 placeholder="Enter Benefits" required></textarea>
                         </div>
 
                         <!-- CONTRIBUTION PERIOD -->
                         <div class="col-md-12 mb-3">
                             <label for="contribution_period">Contribution Period</label>
-                            <input type="text" class="form-control" id="contribution_period" name="contribution_period"
-                                placeholder="Enter Contribution Period" required>
+                            <input type="text" class="form-control" id="update_contribution_period"
+                                name="contribution_period" placeholder="Enter Contribution Period" required>
                         </div>
 
                         <div class="col-12 mb-3">
@@ -129,18 +129,19 @@ if ($id > 0) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item"
-                                        onclick="
-                                        loadPlan('<?php echo $details['id']; ?>',
-                                         '<?php echo $details['type']; ?>', 
-                                         '<?php echo $details['name']; ?>',
-                                         '<?php echo $details['about']; ?>',
-                                         '<?php echo $details['benefits']; ?>', 
-                                         '<?php echo $details['contribution_period']; ?>'
-                                        )"
-                                        data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
-                                        aria-controls="staticBackdrop"><i class="fas fa-edit"></i> Update</a>
+                                    <a class="dropdown-item" 
+                                    onclick="loadPlan(
+                                    <?php echo $details['id']; ?>,
+                                    <?php echo json_encode($details['name']); ?>, 
+                                    <?php echo json_encode($details['type']); ?>,
+                                    <?php echo json_encode($details['contribution_period']); ?>,
+                                    <?php echo json_encode($details['benefits']); ?>,
+                                    <?php echo json_encode($details['about']); ?>
+                                )" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+                                                                    <i class="fas fa-edit"></i> Update
+                                    </a>
                                 </li>
+
                                 <li class="dropdown-item">
                                     <i class="fas fa-camera"></i> Change photo
                                 </li>
@@ -166,14 +167,14 @@ if ($id > 0) {
 <script>
 const BASE_URL = "<?php echo BASE_URL; ?>";
 
-function loadPlan(id, type, name, about, benefits, contribution_period) {
-    console.log(id, name, type, about, benefits, contribution_period);
+function loadPlan(id, name, type, contribution_period, benefits, about) {
+    console.log(id, name, type, contribution_period, benefits, about);
     document.getElementById('id').value = id;
-    document.getElementById('name').value = name;
-    document.getElementById('type').value = type;
-    document.getElementById('about').value = about;
-    document.getElementById('benefits').value = benefits;
-    document.getElementById('contribution_period').value = contribution_period;
+    document.getElementById('update_name').value = name;
+    document.getElementById('update_type').value = type;
+    document.getElementById('update_about').value = about;
+    document.getElementById('update_contribution_period').value = contribution_period;
+    document.getElementById('update_benefits').value = benefits;
 }
 
 
@@ -214,11 +215,11 @@ function deletePlan(id) {
 
 function updatePlan(event) {
     const id = document.getElementById('id').value;
-    const type = document.getElementById('type').value;
-    const name = document.getElementById('name').value;
-    const about = document.getElementById('about').value;
-    const benefits = document.getElementById('benefits').value;
-    const contribution_period = document.getElementById('contribution_period').value
+    const type = document.getElementById('update_type').value;
+    const name = document.getElementById('update_name').value;
+    const about = document.getElementById('update_about').value;
+    const benefits = document.getElementById('update_benefits').value;
+    const contribution_period = document.getElementById('update_contribution_period').value
 
     console.log(id, type, name, benefits, contribution_period);
 
