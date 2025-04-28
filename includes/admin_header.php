@@ -1,27 +1,27 @@
 <?php
 include dirname(__FILE__) . '/../connection/db.php';  
 
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header('Location: ' . BASE_URL . 'views/auth/signin.php');
-    exit;
-}
+// session_start();
+// if (!isset($_SESSION['user_id'])) {
+//     header('Location: ' . BASE_URL . 'views/auth/signin.php');
+//     exit;
+// }
 
 
-$user_id = $_SESSION['user_id'];
-$fetch_user = mysqli_query($conn, "SELECT * FROM users WHERE id = '$user_id'");
-$user = mysqli_fetch_assoc($fetch_user);
-$count_unit_managers = mysqli_query($conn, "SELECT * FROM users WHERE role = 'unit-manager'");
-$count_fraternal_counselors = mysqli_query($conn, "SELECT * FROM users WHERE role = 'fraternal-counselor'");
-$count_members = mysqli_query($conn, "SELECT * FROM users WHERE role = 'member'");
+// $user_id = $_SESSION['user_id'];
+// $fetch_user = mysqli_query($conn, "SELECT * FROM users WHERE id = '$user_id'");
+// $user = mysqli_fetch_assoc($fetch_user);
+// $count_unit_managers = mysqli_query($conn, "SELECT * FROM users WHERE role = 'unit-manager'");
+// $count_fraternal_counselors = mysqli_query($conn, "SELECT * FROM users WHERE role = 'fraternal-counselor'");
+// $count_members = mysqli_query($conn, "SELECT * FROM users WHERE role = 'member'");
 
-$count_unit_managers = mysqli_num_rows($count_unit_managers);
-$count_fraternal_counselors = mysqli_num_rows($count_fraternal_counselors);
-$count_members = mysqli_num_rows($count_members);
+// $count_unit_managers = mysqli_num_rows($count_unit_managers);
+// $count_fraternal_counselors = mysqli_num_rows($count_fraternal_counselors);
+// $count_members = mysqli_num_rows($count_members);
 
 
 
-?>
+// ?>
 
 
 <!doctype html>

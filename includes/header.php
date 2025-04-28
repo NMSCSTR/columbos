@@ -11,13 +11,10 @@
 
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-
-    <!-- Axios -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- Poppins Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +41,7 @@
     }
     </style>
 
-    <title>KCFAPI</title>
+    <title>Columbos App</title>
 </head>
 
 <body>
